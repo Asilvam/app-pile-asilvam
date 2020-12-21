@@ -1,8 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Formulario from "./components/Formulario";
-import Cita from "./components/Cita";
-
-
 
 function App() {
   // Arreglo de citas
@@ -26,7 +23,7 @@ function App() {
 
   // Función que elimina una cita por su id
   const eliminarCita = (id) => {
-    const nuevasCitas = citas.filter((cita) => cita.id !== id);
+    const nuevasCitas = citas.filter((cita) => cita._id !== id);
     guardarCitas(nuevasCitas);
   };
 
@@ -37,17 +34,53 @@ function App() {
     <Fragment>
       <div className="container">
         <h1>Administrador de Reservas PILE</h1>
-      </div>
-      <div className="container">
         <div className="row">
-          <div className="one-half column">
-            <Formulario crearCita={crearCita} />
+          <div className="col s5">
+            <div className="card">
+              <div className="card-content">
+                <Formulario crearCita={crearCita} />
+              </div>
+            </div>
           </div>
-          <div className="one-half column">
+          <div className="col s7">
             <h2>{titulo}</h2>
-            {citas.map((cita) => (
-              <Cita key={cita._id} cita={cita} eliminarCita={eliminarCita} />
-            ))}
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Depto</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Cupos</th>
+                </tr>
+              </thead>
+              <tbody>
+                {citas.map((cita) => (
+                  <tr key={cita._id}>
+                    <td>{cita.nombre}</td>
+                    <td>{cita.depto}</td>
+                    <td>{cita.fecha}</td>
+                    <td>{cita.hora}</td>
+                    <td>{cita.numero}</td>
+                    <td>
+                      <button
+                        className="btn light-blue darken-4"
+                        style={{ margin: "4px" }}
+                        onClick={() => eliminarCita(cita._id)}
+                      >
+                        <i className="material-icons">delete</i>
+                      </button>
+                      <button
+                        className="btn light-blue darken-4"
+                        style={{ margin: "4px" }}
+                      >
+                        <i className="material-icons">edit</i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

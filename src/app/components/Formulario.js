@@ -25,6 +25,16 @@ const Formulario = ({ crearCita }) => {
 
   const addTask = (e) => {
     e.preventDefault();
+    if (
+      email.trim() === "" ||
+      nombre.trim() === "" ||
+      depto.trim() === "" ||
+      celular.trim() === ""
+    ) {
+      actualizaError([true]);
+      return;
+    }
+    actualizaError(false);
     fetch("/api/reservas", {
       method: "POST",
       body: JSON.stringify(cita),
@@ -35,25 +45,19 @@ const Formulario = ({ crearCita }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        window.M.toast({ html: "Task Updated" });
         console.log(data);
-        fetchTasks();
+        actualizarCita({
+          email: "",
+          nombre: "",
+          fecha: "",
+          hora: "",
+          depto: "",
+          celular: "",
+          numero: "",
+        });
       })
       .catch((err) => console.error(err));
-  };
-
-  const cargaReservas = (reservas) => {
-    const Carga = reservas.map(function (valor) {
-      crearCita(valor);
-      return;
-    });
-  };
-
-  const fetchTasks = () => {
-    fetch("/api/reservas")
-      .then((res) => res.json())
-      .then((response) => {
-        response.data;
-      });
   };
 
   const submitCita = (e) => {
@@ -88,7 +92,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="email"
           name="email"
-          className="u-full-width"
+          className="materialize-textarea"
           placeholder="Ingrese correo"
           onChange={actualizarState}
           value={email}
@@ -97,7 +101,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="text"
           name="nombre"
-          className="u-full-width"
+          className="materialize-textarea"
           placeholder="nombre y apellido"
           onChange={actualizarState}
           value={nombre}
@@ -106,7 +110,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="text"
           name="celular"
-          className="u-full-width"
+          className="materialize-textarea"
           placeholder="+56912345678"
           onChange={actualizarState}
           value={celular}
@@ -115,7 +119,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="text"
           name="depto"
-          className="u-full-width"
+          className="materialize-textarea"
           placeholder="Numero Departamento"
           onChange={actualizarState}
           list="deptos"
@@ -232,7 +236,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="date"
           name="fecha"
-          className="u-full-width"
+          className="materialize-textarea"
           onChange={actualizarState}
           value={fecha}
           min="2020-12-01"
@@ -243,7 +247,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="time"
           name="hora"
-          className="u-full-width"
+          className="materialize-textarea"
           onChange={actualizarState}
           value={hora}
           min="10:00"
@@ -269,7 +273,7 @@ const Formulario = ({ crearCita }) => {
         <label>Numero de personas</label>
         <input
           type="number"
-          className="u-full-width"
+          className="materialize-textarea"
           min="1"
           max="4"
           name="numero"
@@ -285,7 +289,7 @@ const Formulario = ({ crearCita }) => {
           <option value="4" />
         </datalist>
 
-        <button type="submit" className="u-full-width button-primary">
+        <button type="submit" className="btn light-blue darken-4">
           Agregar Reserva
         </button>
       </form>
