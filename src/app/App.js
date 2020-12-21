@@ -38,7 +38,7 @@ function App() {
           <div className="container">
             <div className="nav-wrapper">
               <a href="/" className="brand-logo">
-                Administrador de Reservas PILE
+               <h6> Administrador de Reservas PILE</h6>
               </a>
             </div>
           </div>
