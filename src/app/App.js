@@ -32,51 +32,63 @@ function App() {
 
   return (
     <Fragment>
-      <div className="container">
-        <h2>Administrador de Reservas PILE</h2>
-        <div className="row">
-          <div className="one-half column">
-            <Formulario crearCita={crearCita} />
+      <div>
+        {/* NAVIGATION */}
+        <nav className="light-blue darken-4">
+          <div className="container">
+            <div className="nav-wrapper">
+              <a href="/" className="brand-logo">
+              Administrador de Reservas PILE
+              </a>
+            </div>
           </div>
-          <div className="one-half column">
-            <h3>{titulo}</h3>
-            <table className="container-fluid">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Depto</th>
-                  <th>Fecha</th>
-                  <th>Hora</th>
-                  <th>Cupos</th>
-                </tr>
-              </thead>
-              <tbody>
-                {citas.map((cita) => (
-                  <tr key={cita._id}>
-                    <td>{cita.nombre}</td>
-                    <td>{cita.depto}</td>
-                    <td>{cita.fecha}</td>
-                    <td>{cita.hora}</td>
-                    <td>{cita.numero}</td>
-                    <td>
-                      <button
-                        className="btn light-blue darken-4"
-                        style={{ margin: "4px" }}
-                        onClick={() => eliminarCita(cita._id)}
-                      >
-                        <i className="material-icons">delete</i>
-                      </button>
-                      <button
-                        className="btn light-blue darken-4"
-                        style={{ margin: "4px" }}
-                      >
-                        <i className="material-icons">edit</i>
-                      </button>
-                    </td>
+        </nav>
+        <div className="container">
+         
+          <div className="row">
+            <div className="one-half column">
+              <Formulario crearCita={crearCita} />
+            </div>
+            <div className="one-half column">
+              <h3>{titulo}</h3>
+              <table className="container-fluid">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Depto</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Cupos</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {citas.map((cita) => (
+                    <tr key={cita._id}>
+                      <td>{cita.nombre}</td>
+                      <td>{cita.depto}</td>
+                      <td>{cita.fecha}</td>
+                      <td>{cita.hora}</td>
+                      <td>{cita.numero}</td>
+                      <td>
+                        <button
+                          className="btn light-blue darken-4"
+                          style={{ margin: "4px" }}
+                          onClick={() => eliminarCita(cita._id)}
+                        >
+                          <i className="material-icons">delete</i>
+                        </button>
+                        <button
+                          className="btn light-blue darken-4"
+                          style={{ margin: "4px" }}
+                        >
+                          <i className="material-icons">edit</i>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
