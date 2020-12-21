@@ -3,17 +3,30 @@ import Formulario from "./components/Formulario";
 import Cita from "./components/Cita";
 
 
+
 function App() {
   // Arreglo de citas
   const [citas, guardarCitas] = useState([]);
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   const crearCita = (cita) => {
     guardarCitas([...citas, cita]);
   };
 
+  const fetchTasks = () => {
+    fetch("/api/reservas")
+      .then((res) => res.json())
+      .then((data) => {
+        guardarCitas(data);
+        console.log(data);
+      });
+  };
+
   // Función que elimina una cita por su id
   const eliminarCita = (id) => {
-    const nuevasCitas = citas.filter((cita) => cita._id !== id);
+    const nuevasCitas = citas.filter((cita) => cita.id !== id);
     guardarCitas(nuevasCitas);
   };
 

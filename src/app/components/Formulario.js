@@ -43,16 +43,16 @@ const Formulario = ({ crearCita }) => {
 
   const cargaReservas = (reservas) => {
     const Carga = reservas.map(function (valor) {
-      console.log(valor._id);
-      return crearCita(valor)    
+      crearCita(valor);
+      return;
     });
   };
 
   const fetchTasks = () => {
     fetch("/api/reservas")
       .then((res) => res.json())
-      .then((data) => {
-        cargaReservas(data);
+      .then((response) => {
+        response.data;
       });
   };
 
