@@ -45,7 +45,7 @@ const Formulario = ({ crearCita }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        window.M.toast({ html: "Task Updated" });
+        window.M.toast({ html: "Reserva Lista!" });
         console.log(data);
         actualizarCita({
           email: "",
@@ -60,29 +60,10 @@ const Formulario = ({ crearCita }) => {
       .catch((err) => console.error(err));
   };
 
-  const submitCita = (e) => {
-    e.preventDefault();
-    if (email.trim() === "" || nombre.trim() === "" || depto.trim() === "") {
-      actualizaError([true]);
-      return;
-    }
-    actualizaError(false);
-    //console.log(cita)
-    crearCita(cita);
-    actualizarCita({
-      email: "",
-      nombre: "",
-      fecha: "",
-      hora: "",
-      depto: "",
-      celular: "",
-      numero: "",
-    });
-  };
 
   return (
     <Fragment>
-      <h2> Crea Reserva</h2>
+      <h3> Crea Reserva</h3>
       {error ? (
         <p className="alerta-error">Todos los campos son obligatorios</p>
       ) : null}
@@ -289,7 +270,7 @@ const Formulario = ({ crearCita }) => {
           <option value="4" />
         </datalist>
 
-        <button type="submit" className="u-full-width button-primary">
+        <button type="submit" className="btn light-blue darken-4">
           Agregar Reserva
         </button>
       </form>

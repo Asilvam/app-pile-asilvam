@@ -33,14 +33,14 @@ function App() {
   return (
     <Fragment>
       <div className="container">
-        <h1>Administrador de Reservas PILE</h1>
+        <h2>Administrador de Reservas PILE</h2>
         <div className="row">
           <div className="one-half column">
             <Formulario crearCita={crearCita} />
           </div>
           <div className="one-half column">
-            <h2>{titulo}</h2>
-            <table>
+            <h3>{titulo}</h3>
+            <table className="container-fluid">
               <thead>
                 <tr>
                   <th>Nombre</th>
