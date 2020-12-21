@@ -92,7 +92,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="email"
           name="email"
-          className="materialize-textarea"
+          className="u-full-width"
           placeholder="Ingrese correo"
           onChange={actualizarState}
           value={email}
@@ -101,7 +101,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="text"
           name="nombre"
-          className="materialize-textarea"
+          className="u-full-width"
           placeholder="nombre y apellido"
           onChange={actualizarState}
           value={nombre}
@@ -110,7 +110,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="text"
           name="celular"
-          className="materialize-textarea"
+          className="u-full-width"
           placeholder="+56912345678"
           onChange={actualizarState}
           value={celular}
@@ -119,7 +119,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="text"
           name="depto"
-          className="materialize-textarea"
+          className="u-full-width"
           placeholder="Numero Departamento"
           onChange={actualizarState}
           list="deptos"
@@ -236,7 +236,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="date"
           name="fecha"
-          className="materialize-textarea"
+          className="u-full-width"
           onChange={actualizarState}
           value={fecha}
           min="2020-12-01"
@@ -247,7 +247,7 @@ const Formulario = ({ crearCita }) => {
         <input
           type="time"
           name="hora"
-          className="materialize-textarea"
+          className="u-full-width"
           onChange={actualizarState}
           value={hora}
           min="10:00"
@@ -273,7 +273,7 @@ const Formulario = ({ crearCita }) => {
         <label>Numero de personas</label>
         <input
           type="number"
-          className="materialize-textarea"
+          className="u-full-width"
           min="1"
           max="4"
           name="numero"
@@ -289,7 +289,7 @@ const Formulario = ({ crearCita }) => {
           <option value="4" />
         </datalist>
 
-        <button type="submit" className="btn light-blue darken-4">
+        <button type="submit" className="u-full-width button-primary">
           Agregar Reserva
         </button>
       </form>

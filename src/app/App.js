@@ -35,14 +35,10 @@ function App() {
       <div className="container">
         <h1>Administrador de Reservas PILE</h1>
         <div className="row">
-          <div className="col s5">
-            <div className="card">
-              <div className="card-content">
-                <Formulario crearCita={crearCita} />
-              </div>
-            </div>
+          <div className="one-half column">
+            <Formulario crearCita={crearCita} />
           </div>
-          <div className="col s7">
+          <div className="one-half column">
             <h2>{titulo}</h2>
             <table>
               <thead>
