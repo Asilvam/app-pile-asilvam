@@ -11,10 +11,6 @@ module.exports={
                 test: /\.js$/,
                 exclude: /node_modules/
             },
-            {
-                test: /\.css$/i,
-                use: 'css-loader',
-              },
         ]
     }
 };
