@@ -60,10 +60,9 @@ const Formulario = ({ crearCita }) => {
       .catch((err) => console.error(err));
   };
 
-
   return (
     <Fragment>
-      <h3> Crea Reserva</h3>
+      <h5> Crea Reserva</h5>
       {error ? (
         <p className="alerta-error">Todos los campos son obligatorios</p>
       ) : null}
@@ -77,6 +76,8 @@ const Formulario = ({ crearCita }) => {
           placeholder="Ingrese correo"
           onChange={actualizarState}
           value={email}
+          autoFocus
+          required
         />
         <label>Nombre </label>
         <input
@@ -86,6 +87,7 @@ const Formulario = ({ crearCita }) => {
           placeholder="nombre y apellido"
           onChange={actualizarState}
           value={nombre}
+          required
         />
         <label>Celular </label>
         <input
@@ -95,6 +97,7 @@ const Formulario = ({ crearCita }) => {
           placeholder="+56912345678"
           onChange={actualizarState}
           value={celular}
+          required
         />
         <label>Nº Depto </label>
         <input
@@ -105,6 +108,7 @@ const Formulario = ({ crearCita }) => {
           onChange={actualizarState}
           list="deptos"
           value={depto}
+          required
         />
         <datalist id="deptos">
           <option value="201" />
@@ -222,6 +226,7 @@ const Formulario = ({ crearCita }) => {
           value={fecha}
           min="2020-12-01"
           max="2021-02-28"
+          required
         />
 
         <label>Hora </label>
@@ -234,6 +239,7 @@ const Formulario = ({ crearCita }) => {
           min="10:00"
           max="21:00"
           list="listaHoras"
+          required
         />
 
         <datalist id="listaHoras">
@@ -261,6 +267,7 @@ const Formulario = ({ crearCita }) => {
           onChange={actualizarState}
           value={numero}
           list="personas"
+          required
         />
 
         <datalist id="personas">

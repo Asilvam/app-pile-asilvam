@@ -835,3 +835,27 @@
 {"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:23:46.637Z"}
 {"level":"info","message":"Server ON","timestamp":"2020-12-21T22:23:56.849Z"}
 {"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:24:08.424Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:25:21.536Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:25:33.137Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:32:55.857Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:33:07.554Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:34:53.822Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:35:00.176Z"}
+{"email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23","hora":"14:00","depto":"205","celular":"957228927","numero":"","level":"info","timestamp":"2020-12-21T22:35:21.900Z"}
+{"email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23","hora":"14:00","depto":"205","celular":"957228927","numero":"3","level":"info","timestamp":"2020-12-21T22:35:34.606Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:37:22.734Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:37:34.499Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:37:44.158Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:37:50.474Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:38:10.128Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:38:20.404Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:38:42.121Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:38:53.802Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:39:02.964Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:39:14.371Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:39:27.004Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:39:37.225Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:39:52.998Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:40:04.535Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-21T22:41:14.080Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-21T22:41:25.587Z"}

@@ -38,19 +38,18 @@ function App() {
           <div className="container">
             <div className="nav-wrapper">
               <a href="/" className="brand-logo">
-              Administrador de Reservas PILE
+                Administrador de Reservas PILE
               </a>
             </div>
           </div>
         </nav>
         <div className="container">
-         
           <div className="row">
             <div className="one-half column">
               <Formulario crearCita={crearCita} />
             </div>
             <div className="one-half column">
-              <h3>{titulo}</h3>
+              <h5>{titulo}</h5>
               <table className="container-fluid">
                 <thead>
                   <tr>
