@@ -36,11 +36,9 @@ function App() {
         {/* NAVIGATION */}
         <nav className="light-blue darken-4">
           <div className="container">
-            <div className="nav-wrapper">
-              <a href="/" className="brand-logo">
-               <h6> Administrador de Reservas PILE</h6>
-              </a>
-            </div>
+            <a href="/" className="brand-logo">
+              <h5>Reservas PILE</h5>
+            </a>
           </div>
         </nav>
         <div className="container">

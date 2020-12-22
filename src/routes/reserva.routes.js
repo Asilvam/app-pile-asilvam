@@ -2,13 +2,36 @@ const express = require("express");
 const logger = require("../logger");
 const router = express.Router();
 const correo = require('../services/correo');
+const moment = require('moment');
+const moment2 = require('moment');
+const moment3 = require('moment');
+const moment4 = require('moment');
+const moment5 = require('moment');
+moment.defaultFormat = 'DD/MM/YYYY';
+moment2.defaultFormat = 'YYYY/MM/DD';
+moment3.defaultFormat = 'YYYY-MM-DDT00:00:00';
+moment4.defaultFormat = 'YYYY-MM-DD';
+moment5.defaultFormat = 'PGCYYYYMMDDTHHMMSS';
+const momentFormat1 = 'YYYY-MM-DDT00:00:00.000';
+const momentFormat2 = 'DD/MM/YYYY';
+const momentFormat3 = 'YYYY-MM-DD';
 
 // Registro Model
 const Reserva = require("../models/reserva");
 
 // GET all Registros
 router.get("/", async (req, res) => {
-  const reservas = await Reserva.find();
+  let fechaHoy =moment().format(momentFormat1);
+  fechaHoy = fechaHoy+'Z';
+  let fechaMan= moment().add(1,'day').format(momentFormat1);
+  fechaMan = fechaMan+'Z';
+  const reservas = await Reserva.find({ 
+    $and: [
+      {fecha: {$gte: new Date(fechaHoy)}},
+      {fecha: {$lte: new Date(fechaMan)}}
+    ]
+  }  
+  );
   res.json(reservas);
 });
 
