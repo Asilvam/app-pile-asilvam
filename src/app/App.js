@@ -21,10 +21,22 @@ function App() {
       });
   };
 
-  // Función que elimina una cita por su id
-  const eliminarCita = (id) => {
-    const nuevasCitas = citas.filter((cita) => cita._id !== id);
-    guardarCitas(nuevasCitas);
+  const deleteTask = (id) => {
+    if (confirm("Esta Seguro de Eliminar la reserva?")) {
+      fetch(`/api/reservas/${id}`, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          M.toast({ html: "Reserva Eliminada" });
+          fetchTasks();
+        });
+    }
   };
 
   // Mensaje condicional
@@ -70,7 +82,7 @@ function App() {
                         <button
                           className="btn light-blue darken-4"
                           style={{ margin: "4px" }}
-                          onClick={() => eliminarCita(cita._id)}
+                          onClick={() => deleteTask(cita._id)}
                         >
                           <i className="material-icons">delete</i>
                         </button>
