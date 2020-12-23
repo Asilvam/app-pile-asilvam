@@ -17,7 +17,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         guardarCitas(data);
-        console.log(data);
+        //console.log(data);
       });
   };
 
@@ -85,12 +85,6 @@ function App() {
                           onClick={() => deleteTask(cita._id)}
                         >
                           <i className="material-icons">delete</i>
-                        </button>
-                        <button
-                          className="btn light-blue darken-4"
-                          style={{ margin: "4px" }}
-                        >
-                          <i className="material-icons">edit</i>
                         </button>
                       </td>
                     </tr>
