@@ -46,7 +46,7 @@ function App() {
     <Fragment>
       <div>
         {/* NAVIGATION */}
-        <nav className="light-blue darken-4">
+        <nav className="deep-purple darken-4">
           <div className="container">
             <a href="/" className="brand-logo">
               <h5>Reservas PILE</h5>
@@ -60,7 +60,7 @@ function App() {
             </div>
             <div className="one-half column">
               <h5>{titulo}</h5>
-              <table className="container-fluid">
+              <table className = "striped bordered">
                 <thead>
                   <tr>
                     <th>Nombre</th>
@@ -80,7 +80,7 @@ function App() {
                       <td>{cita.numero}</td>
                       <td>
                         <button
-                          className="btn light-blue darken-4"
+                          className="btn deep-purple darken-4"
                           style={{ margin: "4px" }}
                           onClick={() => deleteTask(cita._id)}
                         >

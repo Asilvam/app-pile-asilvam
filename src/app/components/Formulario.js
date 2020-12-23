@@ -266,7 +266,7 @@ const Formulario = ({ crearCita }) => {
           <option value="4" />
         </datalist>
 
-        <button type="submit" className="btn light-blue darken-4">
+        <button type="submit" className="btn deep-purple darken-4">
           Agregar Reserva
         </button>
       </form>
