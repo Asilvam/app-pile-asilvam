@@ -11,8 +11,6 @@ const Formulario = ({ crearCita }) => {
     numero: "",
   });
 
-  const [error, actualizaError] = useState(false);
-
   const actualizarState = (e) => {
     actualizarCita({
       ...cita,
@@ -25,16 +23,6 @@ const Formulario = ({ crearCita }) => {
 
   const addTask = (e) => {
     e.preventDefault();
-    if (
-      email.trim() === "" ||
-      nombre.trim() === "" ||
-      depto.trim() === "" ||
-      celular.trim() === ""
-    ) {
-      actualizaError([true]);
-      return;
-    }
-    actualizaError(false);
     fetch("/api/reservas", {
       method: "POST",
       body: JSON.stringify(cita),
@@ -45,17 +33,22 @@ const Formulario = ({ crearCita }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        window.M.toast({ html: "Reserva Lista!" });
         console.log(data);
-        actualizarCita({
-          email: "",
-          nombre: "",
-          fecha: "",
-          hora: "",
-          depto: "",
-          celular: "",
-          numero: "",
-        });
+        if (data.status==='Reserva Generada') {
+          window.M.toast({ html: "Reserva Lista!" });
+          actualizarCita({
+            email: "",
+            nombre: "",
+            fecha: "",
+            hora: "",
+            depto: "",
+            celular: "",
+            numero: "",
+          });
+          crearCita(cita);
+        } else {
+          window.M.toast({ html: `${data.motivo}` });
+        }
       })
       .catch((err) => console.error(err));
   };
@@ -63,10 +56,6 @@ const Formulario = ({ crearCita }) => {
   return (
     <Fragment>
       <h5> Crea Reserva</h5>
-      {error ? (
-        <p className="alerta-error">Todos los campos son obligatorios</p>
-      ) : null}
-
       <form onSubmit={addTask}>
         <label>Ingrese correo</label>
         <input
