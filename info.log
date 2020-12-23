@@ -126,3 +126,7 @@
 {"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T04:23:27.773Z"}
 {"email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-24","hora":"11:00","depto":"302","celular":"957228927","numero":"1","level":"info","timestamp":"2020-12-23T04:24:50.457Z"}
 {"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T04:24:52.817Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T05:02:49.009Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T05:03:00.478Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T13:07:09.220Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T13:07:20.897Z"}

@@ -142,31 +142,31 @@ module.exports = {
     fechaMan = fechaMan + "Z";
     let fechaSol = moment(req.fecha).format(momentFormat1);
     fechaSol = fechaSol + "Z";
-    console.log(deptos.indexOf(req.depto));
+    //console.log(deptos.indexOf(req.depto));
     if (!(deptos.indexOf(req.depto) >= 0)) {
       return {
         res: false,
-        message: "No Depto No Existe",
+        message: "Depto No Existe",
       };
     }
-    console.log(horas.indexOf(req.hora));
+    //console.log(horas.indexOf(req.hora));
     if (!(horas.indexOf(req.hora) >= 0)) {
       return {
         res: false,
-        message: "Hora No Corresponde",
+        message: "Hora No es valida",
       };
     }
-    console.log(nopersonas.indexOf(req.numero));
+    //console.log(nopersonas.indexOf(req.numero));
     if (!(nopersonas.indexOf(req.numero) >= 0)) {
       return {
         res: false,
-        message: "No personas No Corresponde",
+        message: "Nº personas No es valida",
       };
     }
     if (fechaMan != fechaSol && fechaHoy != fechaSol) {
       return {
         res: false,
-        message: "La fecha no es valida",
+        message: "La fecha No es valida",
       };
     }
     const reservasHoy = await Reserva.find({
@@ -192,10 +192,10 @@ module.exports = {
     const cupos = await Reserva.find({
       $and: [{ fecha: fechaSol }, { hora: req.hora }],
     });
-    console.log(cupos);
+    //console.log(cupos);
     let total = 0;
     cupos.map((cupo) => (total += cupo.numero));
-    console.log(total);
+    //console.log(total);
     numcupos= parseInt(req.numero);
     if (4 - total === 0) {
       return {
