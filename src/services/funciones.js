@@ -200,7 +200,7 @@ module.exports = {
     if (4 - total === 0) {
       return {
         res: false,
-        message: "Ya tiene reserva",
+        message: "No Hay Cupos",
       };
     } else {
       if (!(4 - total >= numcupos)) {
