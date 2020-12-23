@@ -3,6 +3,8 @@ const logger = require("./logger");
 
 mongoose
   .connect(process.env.MONGODB, {
+    useFindAndModify: false,
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
