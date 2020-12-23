@@ -13,6 +13,14 @@ const momentFormat2 = "DD/MM/YYYY";
 const momentFormat3 = "YYYY-MM-DD";
 const Reserva = require("../models/reserva");
 const deptos = [
+  "201",
+  "202",
+  "203",
+  "204",
+  "205",
+  "206",
+  "207",
+  "208",
   "301",
   "302",
   "303",
@@ -185,6 +193,23 @@ module.exports = {
       $and: [{ fecha: fechaSol }, { hora: req.hora }],
     });
     console.log(cupos);
+    let total = 0;
+    cupos.map((cupo) => (total += cupo.numero));
+    console.log(total);
+    numcupos= parseInt(req.numero);
+    if (4 - total === 0) {
+      return {
+        res: false,
+        message: "Ya tiene reserva",
+      };
+    } else {
+      if (!(4 - total >= numcupos)) {
+        return {
+          res: false,
+          message: "Cupos insuficientes",
+        };
+      }
+    }
     return { res: true };
   },
 };
