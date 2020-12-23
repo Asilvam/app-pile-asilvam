@@ -97,3 +97,32 @@
 {"level":"info","message":"Server ON","timestamp":"2020-12-23T00:55:15.838Z"}
 {"level":"info","message":"Server ON","timestamp":"2020-12-23T00:55:22.413Z"}
 {"level":"info","message":"DB is connected","timestamp":"2020-12-23T00:55:32.610Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T01:22:04.030Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T01:22:15.620Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T03:03:22.439Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T03:03:34.354Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T03:03:45.746Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T03:15:02.870Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T03:15:14.408Z"}
+{"email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23","hora":"10:00","depto":"204","celular":"957228927","numero":"1","level":"info","timestamp":"2020-12-23T03:15:44.014Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T03:15:46.581Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T03:53:13.104Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T03:53:24.669Z"}
+{"email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23","hora":"10:00","depto":"306","celular":"957228927","numero":"1","level":"info","timestamp":"2020-12-23T03:53:48.363Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T03:53:51.017Z"}
+{"created_at":"2020-12-23T03:53:13.093Z","_id":"5fe2bf4ca05aeb2c18c63f22","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23T00:00:00.000Z","hora":"10:00","depto":"306","numero":1,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T03:55:59.734Z"}
+{"created_at":"2020-12-23T03:15:02.859Z","_id":"5fe2b660ac08991efc1e66c2","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23T00:00:00.000Z","hora":"10:00","depto":"204","numero":1,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T03:56:03.727Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T04:19:20.341Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T04:19:31.858Z"}
+{"created_at":"2020-12-22T22:36:38.490Z","_id":"5fe2753349df6d4148f96020","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23T00:00:00.000Z","hora":"11:00","depto":"202","numero":3,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T04:19:39.605Z"}
+{"created_at":"2020-12-22T22:40:39.246Z","_id":"5fe27603a62c4d373c5cba12","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23T00:00:00.000Z","hora":"16:00","depto":"305","numero":1,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T04:19:43.281Z"}
+{"created_at":"2020-12-22T22:54:57.442Z","_id":"5fe27965d4454921184e14f7","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23T00:00:00.000Z","hora":"14:00","depto":"301","numero":1,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T04:19:46.963Z"}
+{"created_at":"2020-12-22T22:58:40.125Z","_id":"5fe27a323f5d39369473c4e5","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23T00:00:00.000Z","hora":"15:00","depto":"303","numero":1,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T04:19:49.207Z"}
+{"created_at":"2020-12-22T22:58:40.125Z","_id":"5fe27a663f5d39369473c4e6","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23T00:00:00.000Z","hora":"20:00","depto":"203","numero":2,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T04:19:51.613Z"}
+{"created_at":"2020-12-23T03:04:29.981Z","_id":"5fe2b4a6c6e97e001585790e","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-24T00:00:00.000Z","hora":"15:00","depto":"405","numero":4,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T04:19:54.302Z"}
+{"email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23","hora":"10:00","depto":"203","celular":"957228927","numero":"1","level":"info","timestamp":"2020-12-23T04:21:25.462Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T04:21:28.059Z"}
+{"email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23","hora":"11:00","depto":"302","celular":"957228927","numero":"1","level":"info","timestamp":"2020-12-23T04:23:25.363Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T04:23:27.773Z"}
+{"email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-24","hora":"11:00","depto":"302","celular":"957228927","numero":"1","level":"info","timestamp":"2020-12-23T04:24:50.457Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T04:24:52.817Z"}
