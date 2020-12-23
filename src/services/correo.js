@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const logger = require("../logger");
 module.exports = {
   enviarcorreo: async (req, res) => {
     try {
@@ -10,18 +11,19 @@ module.exports = {
           user: process.env.USER, // generated ethereal user
           pass: process.env.PASS, // generated ethereal password
         },
-      });   
+      });
       // send mail with defined transport object
       let info = await transporter.sendMail({
-        from: 'Piscina JDC 1550', // sender address
+        from: "Piscina JDC 1550", // sender address
         to: req.email, // list of receivers
         subject: "Reserva de Piscina ✔", // Subject line
         html: `<b> Estimado  ${req.nombre}, Este Correo confirma tu reserva, para el dia ${req.fecha}, desde las ${req.hora} </b>`, // html body
       });
-      res.json({ status: "Correo Enviado" });
+      logger.log("info", `Correo enviado: ${req.email}`);
+      return { res: true };
     } catch (error) {
       return {
-        error: true,
+        res: false,
         message: error.message,
       };
     }
