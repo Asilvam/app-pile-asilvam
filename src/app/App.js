@@ -75,7 +75,7 @@ function App() {
                     <tr key={cita._id}>
                       <td>{cita.nombre}</td>
                       <td>{cita.depto}</td>
-                      <td>{cita.fecha}</td>
+                      <td>{cita.fechaST}</td>
                       <td>{cita.hora}</td>
                       <td>{cita.numero}</td>
                       <td>

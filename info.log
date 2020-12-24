@@ -144,3 +144,40 @@
 {"level":"info","message":"DB is connected","timestamp":"2020-12-23T14:25:42.678Z"}
 {"level":"info","message":"Server ON","timestamp":"2020-12-23T14:34:07.462Z"}
 {"level":"info","message":"DB is connected","timestamp":"2020-12-23T14:34:19.028Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T14:34:36.997Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T14:34:47.138Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T22:27:14.912Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:27:31.517Z"}
+{"created_at":"2020-12-23T16:49:06.758Z","_id":"5fe37acbe6bbaa0015da3ef6","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23T00:00:00.000Z","hora":"15:00","depto":"1106","numero":3,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T22:27:38.424Z"}
+{"created_at":"2020-12-23T16:49:06.758Z","_id":"5fe38701e6bbaa0015da3ef8","email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-24T00:00:00.000Z","hora":"15:00","depto":"1106","numero":1,"celular":"957228927","__v":0,"level":"info","timestamp":"2020-12-23T22:27:41.928Z"}
+{"email":"alejandro.silva.m@gmail.com","nombre":"Alejandro Silva","fecha":"2020-12-23","hora":"20:00","depto":"1106","celular":"957228927","numero":"2","level":"info","timestamp":"2020-12-23T22:28:19.756Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T22:28:22.603Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T22:32:35.501Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:32:46.974Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T22:33:07.810Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:33:19.342Z"}
+{"level":"info","message":"borre: [object Object]","timestamp":"2020-12-23T22:34:15.442Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T22:36:00.264Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:36:16.901Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T22:37:19.764Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:37:36.303Z"}
+{"level":"info","message":"Agregue: [object Object]","timestamp":"2020-12-23T22:38:00.422Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T22:38:03.549Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T22:40:00.574Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:40:17.128Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T22:40:26.181Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:40:37.647Z"}
+{"level":"info","message":"borre: [object Object]","timestamp":"2020-12-23T22:41:26.088Z"}
+{"level":"info","message":"Server ON","timestamp":"2020-12-23T22:53:06.433Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:53:23.061Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:53:53.078Z"}
+{"level":"info","message":"DB is connected","timestamp":"2020-12-23T22:54:09.993Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T23:04:43.205Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T23:35:20.576Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T23:39:32.572Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T23:49:03.066Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-23T23:57:59.094Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-24T00:00:12.940Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-24T00:06:53.118Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-24T00:10:43.544Z"}
+{"level":"info","message":"Correo enviado: alejandro.silva.m@gmail.com","timestamp":"2020-12-24T00:11:57.951Z"}

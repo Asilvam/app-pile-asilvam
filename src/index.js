@@ -21,5 +21,5 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //starting server
 app.listen(app.get("port"), () => {
-  logger.log("info", `Server ON`);
+  console.log(`Server ON`);
 });

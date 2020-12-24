@@ -23,6 +23,8 @@ const Formulario = ({ crearCita }) => {
 
   const addTask = (e) => {
     e.preventDefault();
+    //console.log(fecha);
+    cita.fechaST = fecha;
     fetch("/api/reservas", {
       method: "POST",
       body: JSON.stringify(cita),
@@ -34,7 +36,7 @@ const Formulario = ({ crearCita }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.status==='Reserva Generada') {
+        if (data.status === "Reserva Generada") {
           window.M.toast({ html: "Reserva Lista!" });
           actualizarCita({
             email: "",

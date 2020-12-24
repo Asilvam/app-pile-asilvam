@@ -44,7 +44,7 @@ router.get("/:id", async (req, res) => {
 
 // ADD a new Registro
 router.post("/", async (req, res) => {
-  const { email, nombre, fecha, hora, depto, numero, celular } = req.body;
+  const { email, nombre, fecha, hora, depto, numero, celular,fechaST } = req.body;
   const valida = await funciones.valida_cupo(req.body, false, "");
   if (!valida.res) {
     res.json({
@@ -60,15 +60,16 @@ router.post("/", async (req, res) => {
       depto,
       numero,
       celular,
+      fechaST
     });
-    logger.log("info", req.body);
+    console.log(req.body);
     await reserva.save();
     const response = await correo.enviarcorreo(req.body, false);
     res.json({ status: "Reserva Generada" });
   }
 });
 
-// UPDATE a new Registro
+// UPDATE a new Registro -- SIN   USO  <--------------------------------
 router.put("/:id", async (req, res) => {
   const { email, nombre, fecha, hora, depto, numero, celular } = req.body;
   const newReserva = {
@@ -80,7 +81,7 @@ router.put("/:id", async (req, res) => {
     numero,
     celular,
   };
-  logger.log("info", req.body);
+
   await Reserva.findByIdAndUpdate(req.params.id, newReserva);
   res.json({ status: "Reserva Actualizada" });
 });
@@ -89,7 +90,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const reserva = await Reserva.findById(req.params.id);
   await Reserva.findByIdAndRemove(req.params.id);
-  logger.log("info", reserva._doc);
+  console.log(reserva._doc);
   res.json({ status: "Reserva Eliminada" });
 });
 
