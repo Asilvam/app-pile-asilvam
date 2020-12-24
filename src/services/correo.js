@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const logger = require("../logger");
+
 module.exports = {
   enviarcorreo: async (req, res) => {
     try {
@@ -19,7 +19,7 @@ module.exports = {
         subject: "Reserva de Piscina ✔", // Subject line
         html: `<b> Estimado  ${req.nombre}, Este Correo confirma tu reserva, para el dia ${req.fecha}, desde las ${req.hora} </b>`, // html body
       });
-      logger.log("info", `Correo enviado: ${req.email}`);
+      console.log(`Correo enviado: ${req.email}`);
       return { res: true };
     } catch (error) {
       return {

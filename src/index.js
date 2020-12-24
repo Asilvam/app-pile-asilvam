@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const path = require("path");
 const app = express();
 const { mongoose } = require("./database");
-const logger = require("./logger");
+
 
 //settings
 app.set("port", process.env.PORT || 4000);

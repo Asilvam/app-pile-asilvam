@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const logger = require("./logger");
 
 mongoose
   .connect(process.env.MONGODB, {

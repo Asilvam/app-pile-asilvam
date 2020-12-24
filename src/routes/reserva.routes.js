@@ -1,5 +1,4 @@
 const express = require("express");
-const logger = require("../logger");
 const router = express.Router();
 const correo = require("../services/correo");
 const funciones = require("../services/funciones");
@@ -19,7 +18,6 @@ const momentFormat3 = "YYYY-MM-DD";
 
 // Registro Model
 const Reserva = require("../models/reserva");
-const { data } = require("../logger");
 
 // GET all Registros
 router.get("/", async (req, res) => {

@@ -184,7 +184,6 @@ module.exports = {
     const reservasMan = await Reserva.find({
       $and: [{ fecha: fechaMan }, { depto: req.depto }],
     });
-
     if (reservasHoy.length > 0 && fechaHoy === fechaSol) {
       return {
         res: false,
