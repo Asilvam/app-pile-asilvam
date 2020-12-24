@@ -142,6 +142,8 @@ module.exports = {
     fechaMan = fechaMan + "Z";
     let fechaSol = moment(req.fecha).format(momentFormat1);
     fechaSol = fechaSol + "Z";
+    let fecha = new Date(fechaSol);
+
     //console.log(deptos.indexOf(req.depto));
     if (!(deptos.indexOf(req.depto) >= 0)) {
       return {
@@ -167,6 +169,13 @@ module.exports = {
       return {
         res: false,
         message: "La fecha No es valida",
+      };
+    }
+    //console.log(fecha.getDay());
+    if (fecha.getDay() == 0) {
+      return {
+        res: false,
+        message: "Lunes Cerrado",
       };
     }
     const reservasHoy = await Reserva.find({
@@ -196,7 +205,7 @@ module.exports = {
     let total = 0;
     cupos.map((cupo) => (total += cupo.numero));
     //console.log(total);
-    numcupos= parseInt(req.numero);
+    numcupos = parseInt(req.numero);
     if (4 - total === 0) {
       return {
         res: false,
