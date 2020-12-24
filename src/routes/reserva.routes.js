@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
       { fecha: { $gte: new Date(fechaHoy) } },
       { fecha: { $lte: new Date(fechaMan) } },
     ],
-  });
+  }).sort({fechaST:1, hora:1});
   res.json(reservas);
 });
 
