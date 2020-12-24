@@ -17,7 +17,15 @@ module.exports = {
         from: "Piscina JDC 1550", // sender address
         to: req.email, // list of receivers
         subject: "Reserva de Piscina ✔", // Subject line
-        html: `<b> Estimado  ${req.nombre}, Este Correo confirma tu reserva, para el dia ${req.fecha}, desde las ${req.hora} </b>`, // html body
+        html: `<b> Hola  ${req.nombre},<br> Este Correo confirma tu reserva. <br>
+        Para el dia ${req.fecha}, desde las ${req.hora} horas.<br>
+        <br>
+        Recuerda las normas y protocolo de uso de la piscina. <br>
+        <br>
+        Se empatico al reservar, no solo tu vives aca.<br>
+        ¡¡¡ Todos queremos ir !!!!! <br>
+        Salu2, <br>
+        Equipo "Pile JDC" </b>`, // html body
       });
       console.log(`Correo enviado: ${req.email}`);
       return { res: true };
