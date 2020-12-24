@@ -22,8 +22,9 @@ module.exports = {
         <br>
         Recuerda las normas y protocolo de uso de la piscina. <br>
         <br>
-        Se empatico al reservar, no solo tu vives aca.<br>
+        Se empático al reservar, no solo tú vives acá.<br>
         ¡¡¡ Todos queremos ir !!!!! <br>
+        <br>
         Salu2, <br>
         Equipo "Pile JDC" </b>`, // html body
       });
