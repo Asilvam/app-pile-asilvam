@@ -22,7 +22,7 @@ function App() {
   };
 
   const deleteTask = (id, email) => {
-    console.log(email);
+    //console.log(email);
     if (confirm("Esta Seguro de Eliminar la reserva?")) {
       let correo = prompt("correo de validacion");
       if (!(correo ===null)) {
