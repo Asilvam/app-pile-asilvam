@@ -21,21 +21,29 @@ function App() {
       });
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = (id, email) => {
+    console.log(email);
     if (confirm("Esta Seguro de Eliminar la reserva?")) {
-      fetch(`/api/reservas/${id}`, {
-        method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          M.toast({ html: "Reserva Eliminada" });
-          fetchTasks();
-        });
+      let correo = prompt("correo de validacion");
+      if (!(correo ===null)) {
+        if (correo.trim().toLowerCase() == email.trim().toLowerCase()) {
+          fetch(`/api/reservas/${id}`, {
+            method: "DELETE",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              M.toast({ html: "Reserva Eliminada" });
+              fetchTasks();
+            });
+        } else {
+          alert("Correo no Corresponde!");
+        }
+      }
     }
   };
 
@@ -60,7 +68,7 @@ function App() {
             </div>
             <div className="one-half column">
               <h5>{titulo}</h5>
-              <table className = "striped bordered">
+              <table className="striped bordered">
                 <thead>
                   <tr>
                     <th>Nombre</th>
@@ -79,13 +87,15 @@ function App() {
                       <td>{cita.hora}</td>
                       <td>{cita.numero}</td>
                       <td>
-                        <button
-                          className="btn deep-purple darken-4"
-                          style={{ margin: "4px" }}
-                          onClick={() => deleteTask(cita._id)}
-                        >
-                          <i className="material-icons">delete</i>
-                        </button>
+                        {
+                          <button
+                            className="btn deep-purple darken-4"
+                            style={{ margin: "4px" }}
+                            onClick={() => deleteTask(cita._id, cita.email)}
+                          >
+                            <i className="material-icons">delete</i>
+                          </button>
+                        }
                       </td>
                     </tr>
                   ))}
