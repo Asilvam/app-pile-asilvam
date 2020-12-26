@@ -62,7 +62,7 @@ router.post("/", async (req, res) => {
     });
     console.log(req.body);
     await reserva.save();
-    const response = await correo.enviarcorreo(req.body, false);
+    await correo.enviarcorreo(req.body, 0);
     res.json({ status: "Reserva Generada" });
   }
 });
@@ -88,6 +88,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const reserva = await Reserva.findById(req.params.id);
   await Reserva.findByIdAndRemove(req.params.id);
+  await correo.enviarcorreo(reserva._doc, 1);
   console.log(reserva._doc);
   res.json({ status: "Reserva Eliminada" });
 });
