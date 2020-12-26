@@ -172,6 +172,7 @@ module.exports = {
       };
     }
     //console.log(fecha.getDay());
+    // == 0 Domingo en ingles
     if (fecha.getDay() == 1) {
       return {
         res: false,
