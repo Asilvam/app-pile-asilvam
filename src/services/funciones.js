@@ -172,7 +172,7 @@ module.exports = {
       };
     }
     //console.log(fecha.getDay());
-    if (fecha.getDay() == 0) {
+    if (fecha.getDay() == 1) {
       return {
         res: false,
         message: "Lunes Cerrado",
