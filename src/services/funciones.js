@@ -143,7 +143,7 @@ module.exports = {
     let fechaSol = moment(req.fecha).format(momentFormat1);
     fechaSol = fechaSol + "Z";
     let fecha = new Date(fechaSol);
-    console.log(moment().format('DD-MM-yyyy, hh:mm:ss a'));
+    console.log(moment().format('DD-MM-yyyy, hh:mm:ss a'), ' ', req.depto,' ', req.nombre, ' ', req.fecha, ' ', req.hora,' ',req.numero);
     //console.log(deptos.indexOf(req.depto));
     if (!(deptos.indexOf(req.depto) >= 0)) {
       return {
