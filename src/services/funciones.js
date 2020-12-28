@@ -134,6 +134,29 @@ const horas = [
 ];
 const nopersonas = ["1", "2", "3", "4"];
 
+formateaMomento = (momento) => {
+  const regexp = /\d\d:\d\d(:\d\d)?/;
+  if (regexp.test(momento)) {
+    const units = momento.split(":");
+    return +units[0] * 3600 + +units[1] * 60 + (+units[2] || 0);
+  }
+  return null;
+};
+
+generadorHorario = (horaApertura, horaCierre) => {
+  let a = formateaMomento(horaApertura);
+  let c = formateaMomento(horaCierre);
+  //console.log("horario: de", a, "a", c);
+  return function (hora) {
+    const h = formateaMomento(hora);
+    //abierto a las 00:00
+    if (a > c) {
+      return h >= a || h <= c;
+    }
+    return h >= a && h <= c;
+  };
+};
+
 module.exports = {
   valida_cupo: async (req, res, message) => {
     let fechaHoy = moment().format(momentFormat1);
@@ -143,7 +166,29 @@ module.exports = {
     let fechaSol = moment(req.fecha).format(momentFormat1);
     fechaSol = fechaSol + "Z";
     let fecha = new Date(fechaSol);
-    console.log(moment().format('DD-MM-yyyy, hh:mm:ss a'), ' ', req.depto,' ', req.nombre, ' ', req.fecha, ' ', req.hora,' ',req.numero);
+    console.log(
+      moment().format("DD-MM-yyyy, hh:mm:ss a"),
+      " ",
+      req.depto,
+      " ",
+      req.nombre,
+      " ",
+      req.fecha,
+      " ",
+      req.hora,
+      " ",
+      req.numero
+    );
+    let abiertoFn = generadorHorario("09:00", "21:00");
+    let horario = moment().format("HH:mm");
+    console.log(horario);
+    //console.log(abiertoFn(horario));
+    if (!abiertoFn(horario)) {
+      return {
+        res: false,
+        message: "Fuera de Horario Reserva",
+      };
+    }
     //console.log(deptos.indexOf(req.depto));
     if (!(deptos.indexOf(req.depto) >= 0)) {
       return {
