@@ -159,6 +159,9 @@ generadorHorario = (horaApertura, horaCierre) => {
 
 module.exports = {
   valida_cupo: async (req, res, message) => {
+    let fechaAyer = moment().subtract(1, "day").format(momentFormat1);
+    fechaAyer = fechaAyer + "Z";
+    console.log(fechaAyer);
     let fechaHoy = moment().format(momentFormat1);
     fechaHoy = fechaHoy + "Z";
     let fechaMan = moment().add(1, "day").format(momentFormat1);
@@ -224,23 +227,39 @@ module.exports = {
         message: "Lunes Cerrado",
       };
     }
+    const reservasAyer = await Reserva.find({
+      $and: [{ fecha: fechaAyer }, { depto: req.depto }],
+    });
     const reservasHoy = await Reserva.find({
       $and: [{ fecha: fechaHoy }, { depto: req.depto }],
     });
     const reservasMan = await Reserva.find({
       $and: [{ fecha: fechaMan }, { depto: req.depto }],
     });
-    if (reservasHoy.length > 0 && fechaHoy === fechaSol) {
+    if (reservasAyer.length > 0 && fechaHoy === fechaSol) {
       return {
         res: false,
-        message: "Ya tiene reserva",
+        message: "Ya tuvo reserva Ayer",
       };
     } else {
-      if (reservasMan.length > 0 && fechaMan === fechaSol) {
+      if (
+        reservasMan.length > 0 &&
+        (fechaHoy === fechaSol || fechaMan === fechaSol)
+      ) {
         return {
           res: false,
-          message: "Ya tiene reserva",
+          message: "Ya tiene reserva Mañana",
         };
+      } else {
+        if (
+          reservasHoy.length > 0 &&
+          (fechaHoy === fechaSol || fechaMan === fechaSol)
+        ) {
+          return {
+            res: false,
+            message: "Ya tiene reserva Hoy",
+          };
+        }
       }
     }
     const cupos = await Reserva.find({
