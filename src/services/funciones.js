@@ -219,13 +219,26 @@ module.exports = {
         message: "La fecha No es valida",
       };
     }
-    //console.log(fecha.getDay());
+    console.log(fecha.getDay());
     // == 0 Domingo en ingles
     if (fecha.getDay() == 0) {
       return {
         res: false,
         message: "Lunes Cerrado",
       };
+    } else {
+      if (
+        fecha.getDay() == 3 &&
+        (req.hora === "10:00" ||
+          req.hora === "11:00" ||
+          req.hora === "12:00" ||
+          req.hora === "13:00")
+      ) {
+        return {
+          res: false,
+          message: "Jueves solo tarde",
+        };
+      }
     }
     const reservasAyer = await Reserva.find({
       $and: [{ fecha: fechaAyer }, { depto: req.depto }],
