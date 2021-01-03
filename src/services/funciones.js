@@ -305,7 +305,7 @@ module.exports = {
     return { res: true };
   },
   valida_borrar: async (req, res, message) => {
-    let horario = moment().format("HH:mm");
+    let horario = moment().add(1, "hour").format("HH:mm");
     let fechaHoy = moment().format("DD-MM-yyyy");
     let fechaSol = moment(req.fechaST).format("DD-MM-yyyy");
     if (horario > req.hora && fechaHoy === fechaSol) {
