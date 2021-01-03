@@ -316,5 +316,6 @@ module.exports = {
         message: "Fuera Horario Anulacion",
       };
     }
+    return { res: true };
   },
 };
