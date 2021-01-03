@@ -161,7 +161,7 @@ module.exports = {
   valida_cupo: async (req, res, message) => {
     let fechaAyer = moment().subtract(1, "day").format(momentFormat1);
     fechaAyer = fechaAyer + "Z";
-    console.log(fechaAyer);
+    //console.log(fechaAyer);
     let fechaHoy = moment().format(momentFormat1);
     fechaHoy = fechaHoy + "Z";
     let fechaMan = moment().add(1, "day").format(momentFormat1);
@@ -190,6 +190,13 @@ module.exports = {
       return {
         res: false,
         message: "Fuera de Horario Reserva",
+      };
+    }
+    if (horario > req.hora && fechaHoy === fechaSol) {
+      //console.log("horario > hora");
+      return {
+        res: false,
+        message: "Horario Vencido",
       };
     }
     //console.log(deptos.indexOf(req.depto));
@@ -297,5 +304,17 @@ module.exports = {
       }
     }
     return { res: true };
+  },
+  valida_borrar: async (req, res, message) => {
+    let horario = moment().format("HH:mm");
+    let fechaHoy = moment().format("DD-MM-yyyy");
+    let fechaSol = moment(req.fechaST).format("DD-MM-yyyy");
+    if (horario > req.hora && fechaHoy === fechaSol) {
+      console.log("horario > hora");
+      return {
+        res: false,
+        message: "Fuera Horario Anulacion",
+      };
+    }
   },
 };
