@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
       { fecha: { $gte: new Date(fechaHoy) } },
       { fecha: { $lte: new Date(fechaMan) } },
     ],
-  }).sort({fechaST:1, hora:1});
+  }).sort({ fechaST: 1, hora: 1 });
   res.json(reservas);
 });
 
@@ -42,7 +42,16 @@ router.get("/:id", async (req, res) => {
 
 // ADD a new Registro
 router.post("/", async (req, res) => {
-  const { email, nombre, fecha, hora, depto, numero, celular,fechaST } = req.body;
+  const {
+    email,
+    nombre,
+    fecha,
+    hora,
+    depto,
+    numero,
+    celular,
+    fechaST,
+  } = req.body;
   const valida = await funciones.valida_cupo(req.body, false, "");
   if (!valida.res) {
     res.json({
@@ -58,7 +67,7 @@ router.post("/", async (req, res) => {
       depto,
       numero,
       celular,
-      fechaST
+      fechaST,
     });
     console.log(req.body);
     await reserva.save();
@@ -87,10 +96,18 @@ router.put("/:id", async (req, res) => {
 // DELETE a Registro
 router.delete("/:id", async (req, res) => {
   const reserva = await Reserva.findById(req.params.id);
-  await Reserva.findByIdAndRemove(req.params.id);
-  await correo.enviarcorreo(reserva._doc, 1);
-  console.log(reserva._doc);
-  res.json({ status: "Reserva Eliminada" });
+  const valida = await funciones.valida_borrar(reserva._doc, false, "");
+  if (!valida.res) {
+    res.json({
+      status: "Eliminacion Fallo",
+      motivo: valida.message,
+    });
+  } else {
+    await Reserva.findByIdAndRemove(req.params.id);
+    await correo.enviarcorreo(reserva._doc, 1);
+    console.log(reserva._doc);
+    res.json({ status: "Reserva Eliminada" });
+  }
 });
 
 module.exports = router;
