@@ -36,7 +36,7 @@ module.exports = {
     <li>Quienes estén con sus trajes de baño, deberán utilizar en todo momento su mascarilla, y solo sacarla cuando ingresen a la piscina.</li>
     <li>En la entrada de la piscina, mantendremos un depósito de alcohol gel, el cual será de uso obligatorio.</li>
     <li>La piscina se mantendrá operativa siempre que tod@s cooperen y cumplan con las indicaciones.</li> 
-    <br><br>Hay que recordar que la pandemia no ha terminado y debemos continuar con los cuidados recomendados.<br>
+    <br>Hay que recordar que la pandemia no ha terminado y debemos continuar con los cuidados recomendados.<br>
     <br>
     Horario de funcionamiento:<br>
     <br>
