@@ -13,7 +13,7 @@ module.exports = {
       },
     });
     // send mail with defined transport object
-    let textoReserva = `<span> Hola  ${req.nombre},<br> Este Correo confirma tu reserva. <br> <br>
+    let textoReserva = `<span> Hola  ${req.nombre},<br> <br>Este Correo confirma tu reserva. <br> <br>
     Para el dia ${req.fecha}, desde las ${req.hora} horas.<br>
     Es para ${req.numero} personas.<br>
     <br>
