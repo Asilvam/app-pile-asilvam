@@ -25,7 +25,7 @@ function App() {
     //console.log(email);
     if (confirm("Esta Seguro de Eliminar la reserva?")) {
       let correo = prompt("correo de validacion");
-      if (!(correo ===null)) {
+      if (!(correo === null)) {
         if (correo.trim().toLowerCase() == email.trim().toLowerCase()) {
           fetch(`/api/reservas/${id}`, {
             method: "DELETE",
@@ -37,8 +37,12 @@ function App() {
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
-              M.toast({ html: "Reserva Eliminada" });
-              fetchTasks();
+              if (data.status === "Reserva Eliminada") {
+                M.toast({ html: "Reserva Eliminada" });
+                fetchTasks();
+              } else {
+                window.M.toast({ html: `${data.motivo}` });
+              }
             });
         } else {
           alert("Correo no Corresponde!");
