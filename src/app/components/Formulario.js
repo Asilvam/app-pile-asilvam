@@ -245,7 +245,6 @@ const Formulario = ({ crearCita }) => {
           <option value="18:00" />
           <option value="19:00" />
           <option value="20:00" />
-          <option value="21:00" />
         </datalist>
 
         <label>Numero de personas</label>
