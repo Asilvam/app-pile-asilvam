@@ -217,7 +217,7 @@ const Formulario = ({ crearCita }) => {
           onChange={actualizarState}
           value={fecha}
           min="2020-12-01"
-          max="2021-02-28"
+          max="2021-03-31"
           required
         />
 
