@@ -156,6 +156,18 @@ generadorHorario = (horaApertura, horaCierre) => {
   };
 };
 
+phonenumber=(inputtxt) =>{
+  //+56X XXXX XXXX
+  var phoneno = /^\+?([0-9]{3})\)?[ ]?([0-9]{4})[ ]?([0-9]{4})$/;
+  if(inputtxt.value.match(phoneno)) {
+    return true;
+  }  
+  else {  
+    alert("message");
+    return false;
+  }
+}
+
 module.exports = {
   valida_cupo: async (req, res, message) => {
     let fechaAyer = moment().subtract(1, "day").format(momentFormat1);
