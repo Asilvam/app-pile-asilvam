@@ -10,7 +10,7 @@ const ReservaSchema = new Schema({
   depto: { type: String, required: true, trim: true },
   celular: { type: String, required: true, trim: true },
   numero: { type: Number, required: true, trim: true },
-  created_at: { type: Date, required: true, },
+  created_at: { type: Date, },
 });
 
 module.exports = mongoose.model("Reserva", ReservaSchema);
