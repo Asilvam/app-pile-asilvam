@@ -25,6 +25,7 @@ const Formulario = ({ crearCita }) => {
     e.preventDefault();
     //console.log(fecha);
     cita.fechaST = fecha;
+    cita.created_at = Date.now();
     fetch("/api/reservas", {
       method: "POST",
       body: JSON.stringify(cita),

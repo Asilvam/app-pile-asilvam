@@ -51,6 +51,7 @@ router.post("/", async (req, res) => {
     numero,
     celular,
     fechaST,
+    created_at,
   } = req.body;
   const valida = await funciones.valida_cupo(req.body, false, "");
   if (!valida.res) {
@@ -68,6 +69,7 @@ router.post("/", async (req, res) => {
       numero,
       celular,
       fechaST,
+      created_at,
     });
     console.log(req.body);
     await reserva.save();
