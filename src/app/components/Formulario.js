@@ -229,7 +229,7 @@ const Formulario = ({ crearCita }) => {
           onChange={actualizarState}
           value={hora}
           min="10:00"
-          max="21:00"
+          max="20:00"
           list="listaHoras"
           required
         />
