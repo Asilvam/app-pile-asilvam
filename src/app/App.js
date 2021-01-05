@@ -95,7 +95,7 @@ function App() {
                           <button
                             className="btn deep-purple darken-4"
                             style={{ margin: "4px" }}
-                            onClick={() => deleteTask(cita.id, cita.email)}
+                            onClick={() => deleteTask(cita._id, cita.email)}
                           >
                             <i className="material-icons">delete</i>
                           </button>
