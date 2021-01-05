@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import {v4 as uuidv4} from 'uuid';
 
 const Formulario = ({ crearCita }) => {
   const [cita, actualizarCita] = useState({
@@ -26,6 +27,7 @@ const Formulario = ({ crearCita }) => {
     //console.log(fecha);
     cita.fechaST = fecha;
     cita.created_at = Date.now();
+    cita.id = uuidv4();
     //console.log(cita.created_at);
     fetch("/api/reservas", {
       method: "POST",
