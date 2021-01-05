@@ -99,17 +99,19 @@ router.put("/:id", async (req, res) => {
 
 // DELETE a Registro
 router.delete("/:id", async (req, res) => {
-  const reserva = await Reserva.findById(req.params.id);
-  const valida = await funciones.valida_borrar(reserva._doc, false, "");
+  const reserva = await Reserva.find({ id: req.params.id });
+  //console.log(reserva);
+  //console.log(reserva[0]._id);
+  const valida = await funciones.valida_borrar(reserva[0], false, "");
   if (!valida.res) {
     res.json({
       status: "Eliminacion Fallo",
       motivo: valida.message,
     });
   } else {
-    await Reserva.findByIdAndRemove(req.params.id);
-    await correo.enviarcorreo(reserva._doc, 1);
-    console.log(reserva._doc);
+    await Reserva.findByIdAndRemove(reserva[0]._id);
+    await correo.enviarcorreo(reserva[0], 1);
+    console.log(reserva[0]);
     res.json({ status: "Reserva Eliminada" });
   }
 });
