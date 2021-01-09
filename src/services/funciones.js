@@ -187,6 +187,8 @@ module.exports = {
         req.depto,
         "Nombre: ",
         req.nombre,
+        'Nº Celular: ',
+        req.celular,
         "Fecha: ",
         req.fecha,
         "Hora: ",
