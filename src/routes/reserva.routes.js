@@ -74,8 +74,8 @@ router.post("/", async (req, res) => {
       created_at,
       id,
     });
-    console.log(" ---------- Reserva Generada ----------- ");
-    console.log(req.body);
+    console.log("Reserva Generada con Exito");
+    //console.log(req.body);
     await reserva.save();
     await correo.enviarcorreo(req.body, 0);
     res.json({ status: "Reserva Generada" });

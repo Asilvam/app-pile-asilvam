@@ -73,11 +73,15 @@ module.exports = {
       subject = subjectElimna;
     }
     let info = await transporter.sendMail({
-      from: "Piscina JDC 1550", // sender address
+      from: 'Piscina JDC 1550', // sender address
       to: req.email, // list of receivers
       subject: subject, // Subject line
       html: textoHtml, // html body
     });
-    console.log(`Correo enviado a: ${req.email}`);
+    if (opcion === 0) {
+      console.log(`Correo conformacion enviado a: ${req.email}`);
+    } else {
+      console.log(`Correo anulacion enviado a: ${req.email}`);
+    }
   },
 };
