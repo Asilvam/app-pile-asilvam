@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 module.exports = {
   enviarcorreo: async (req, opcion) => {
-    console.log(opcion);
+    //console.log(opcion);
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
@@ -78,6 +78,6 @@ module.exports = {
       subject: subject, // Subject line
       html: textoHtml, // html body
     });
-    console.log(`Correo enviado: ${req.email}`);
+    console.log(`Correo enviado a: ${req.email}`);
   },
 };

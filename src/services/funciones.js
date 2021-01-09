@@ -156,172 +156,181 @@ generadorHorario = (horaApertura, horaCierre) => {
   };
 };
 
-phonenumber=(inputtxt) =>{
+phonenumber = (inputtxt) => {
   //+56X XXXX XXXX
   var phoneno = /^\+?([0-9]{3})\)?[ ]?([0-9]{4})[ ]?([0-9]{4})$/;
-  if(inputtxt.value.match(phoneno)) {
+  if (inputtxt.value.match(phoneno)) {
     return true;
-  }  
-  else {  
+  } else {
     alert("message");
     return false;
   }
-}
+};
 
 module.exports = {
   valida_cupo: async (req, res, message) => {
-    let fechaAyer = moment().subtract(1, "day").format(momentFormat1);
-    fechaAyer = fechaAyer + "Z";
-    //console.log(fechaAyer);
-    let fechaHoy = moment().format(momentFormat1);
-    fechaHoy = fechaHoy + "Z";
-    let fechaMan = moment().add(1, "day").format(momentFormat1);
-    fechaMan = fechaMan + "Z";
-    let fechaSol = moment(req.fecha).format(momentFormat1);
-    fechaSol = fechaSol + "Z";
-    let fecha = new Date(fechaSol);
-    console.log(
-      moment().format("DD-MM-yyyy, hh:mm:ss a"),
-      " ",
-      req.depto,
-      " ",
-      req.nombre,
-      " ",
-      req.fecha,
-      " ",
-      req.hora,
-      " ",
-      req.numero
-    );
-    let abiertoFn = generadorHorario("09:00", "21:00");
-    let horario = moment().format("HH:mm");
-    console.log(horario);
-    //console.log(abiertoFn(horario));
-    if (!abiertoFn(horario)) {
-      return {
-        res: false,
-        message: "Fuera de Horario Reserva",
-      };
-    }
-    if (horario > req.hora && fechaHoy === fechaSol) {
-      //console.log("horario > hora");
-      return {
-        res: false,
-        message: "Horario Vencido",
-      };
-    }
-    //console.log(deptos.indexOf(req.depto));
-    if (!(deptos.indexOf(req.depto) >= 0)) {
-      return {
-        res: false,
-        message: "Depto No Existe",
-      };
-    }
-    //console.log(horas.indexOf(req.hora));
-    if (!(horas.indexOf(req.hora) >= 0)) {
-      return {
-        res: false,
-        message: "Hora No es valida",
-      };
-    }
-    //console.log(nopersonas.indexOf(req.numero));
-    if (!(nopersonas.indexOf(req.numero) >= 0)) {
-      return {
-        res: false,
-        message: "Nº personas No es valida",
-      };
-    }
-    if (fechaMan != fechaSol && fechaHoy != fechaSol) {
-      return {
-        res: false,
-        message: "La fecha No es valida",
-      };
-    }
-    console.log(fecha.getDay());
-    // == 0 Domingo en ingles
-    if (fecha.getDay() == 0) {
-      return {
-        res: false,
-        message: "Lunes Cerrado",
-      };
-    } else {
-      if (
-        fecha.getDay() == 3 &&
-        (req.hora === "10:00" ||
-          req.hora === "11:00" ||
-          req.hora === "12:00" ||
-          req.hora === "13:00")
-      ) {
+    try {
+      let fechaAyer = moment().subtract(1, "day").format(momentFormat1);
+      fechaAyer = fechaAyer + "Z";
+      //console.log(fechaAyer);
+      let fechaHoy = moment().format(momentFormat1);
+      fechaHoy = fechaHoy + "Z";
+      let fechaMan = moment().add(1, "day").format(momentFormat1);
+      fechaMan = fechaMan + "Z";
+      let fechaSol = moment(req.fecha).format(momentFormat1);
+      fechaSol = fechaSol + "Z";
+      let fecha = new Date(fechaSol);
+      console.log(
+        "------------------------------- VALIDA CUPO -------------------------------"
+      );
+      console.log(
+        moment().format("DD-MM-yyyy, hh:mm:ss a"),
+        "Depto: ",
+        req.depto,
+        "Nombre: ",
+        req.nombre,
+        "Fecha: ",
+        req.fecha,
+        "Hora: ",
+        req.hora,
+        "Cupos: ",
+        req.numero
+      );
+      let abiertoFn = generadorHorario("09:00", "21:00");
+      let horario = moment().format("HH:mm");
+      console.log("Hora Intento: ", horario);
+      //console.log(abiertoFn(horario));
+      if (!abiertoFn(horario)) {
         return {
           res: false,
-          message: "Jueves solo tarde",
+          message: "Fuera de Horario Reserva",
         };
       }
-    }
-    const reservasAyer = await Reserva.find({
-      $and: [{ fecha: fechaAyer }, { depto: req.depto }],
-    });
-    const reservasHoy = await Reserva.find({
-      $and: [{ fecha: fechaHoy }, { depto: req.depto }],
-    });
-    const reservasMan = await Reserva.find({
-      $and: [{ fecha: fechaMan }, { depto: req.depto }],
-    });
-    if (reservasAyer.length > 0 && fechaHoy === fechaSol) {
-      return {
-        res: false,
-        message: "Ya tuvo reserva Ayer",
-      };
-    } else {
-      if (
-        reservasMan.length > 0 &&
-        (fechaHoy === fechaSol || fechaMan === fechaSol)
-      ) {
+      if (horario > req.hora && fechaHoy === fechaSol) {
+        //console.log("horario > hora");
         return {
           res: false,
-          message: "Ya tiene reserva Mañana",
+          message: "Horario Vencido",
+        };
+      }
+      //console.log(deptos.indexOf(req.depto));
+      if (!(deptos.indexOf(req.depto) >= 0)) {
+        return {
+          res: false,
+          message: "Depto No Existe",
+        };
+      }
+      //console.log(horas.indexOf(req.hora));
+      if (!(horas.indexOf(req.hora) >= 0)) {
+        return {
+          res: false,
+          message: "Hora No es valida",
+        };
+      }
+      //console.log(nopersonas.indexOf(req.numero));
+      if (!(nopersonas.indexOf(req.numero) >= 0)) {
+        return {
+          res: false,
+          message: "Nº personas No es valida",
+        };
+      }
+      if (fechaMan != fechaSol && fechaHoy != fechaSol) {
+        return {
+          res: false,
+          message: "La fecha No es valida",
+        };
+      }
+      //console.log(fecha.getDay());
+      // == 0 Domingo en ingles
+      if (fecha.getDay() == 0) {
+        return {
+          res: false,
+          message: "Lunes Cerrado",
         };
       } else {
         if (
-          reservasHoy.length > 0 &&
+          fecha.getDay() == 3 &&
+          (req.hora === "10:00" ||
+            req.hora === "11:00" ||
+            req.hora === "12:00" ||
+            req.hora === "13:00")
+        ) {
+          return {
+            res: false,
+            message: "Jueves solo tarde",
+          };
+        }
+      }
+      const reservasAyer = await Reserva.find({
+        $and: [{ fecha: fechaAyer }, { depto: req.depto }],
+      });
+      const reservasHoy = await Reserva.find({
+        $and: [{ fecha: fechaHoy }, { depto: req.depto }],
+      });
+      const reservasMan = await Reserva.find({
+        $and: [{ fecha: fechaMan }, { depto: req.depto }],
+      });
+      if (reservasAyer.length > 0 && fechaHoy === fechaSol) {
+        return {
+          res: false,
+          message: "Ya tuvo reserva Ayer",
+        };
+      } else {
+        if (
+          reservasMan.length > 0 &&
           (fechaHoy === fechaSol || fechaMan === fechaSol)
         ) {
           return {
             res: false,
-            message: "Ya tiene reserva Hoy",
+            message: "Ya tiene reserva Mañana",
+          };
+        } else {
+          if (
+            reservasHoy.length > 0 &&
+            (fechaHoy === fechaSol || fechaMan === fechaSol)
+          ) {
+            return {
+              res: false,
+              message: "Ya tiene reserva Hoy",
+            };
+          }
+        }
+      }
+      const cupos = await Reserva.find({
+        $and: [{ fecha: fechaSol }, { hora: req.hora }],
+      });
+      //console.log(cupos);
+      let total = 0;
+      cupos.map((cupo) => (total += cupo.numero));
+      //console.log(total);
+      numcupos = parseInt(req.numero);
+      if (4 - total === 0) {
+        return {
+          res: false,
+          message: "No Hay Cupos",
+        };
+      } else {
+        if (!(4 - total >= numcupos)) {
+          return {
+            res: false,
+            message: "Cupos insuficientes",
           };
         }
       }
-    }
-    const cupos = await Reserva.find({
-      $and: [{ fecha: fechaSol }, { hora: req.hora }],
-    });
-    //console.log(cupos);
-    let total = 0;
-    cupos.map((cupo) => (total += cupo.numero));
-    //console.log(total);
-    numcupos = parseInt(req.numero);
-    if (4 - total === 0) {
+      return { res: true };
+    } catch (e) {
       return {
         res: false,
-        message: "No Hay Cupos",
+        message: e.message,
       };
-    } else {
-      if (!(4 - total >= numcupos)) {
-        return {
-          res: false,
-          message: "Cupos insuficientes",
-        };
-      }
     }
-    return { res: true };
   },
   valida_borrar: async (req, res, message) => {
     let horario = moment().add(1, "hour").format("HH:mm");
     let fechaHoy = moment().format("DD-MM-yyyy");
     let fechaSol = moment(req.fechaST).format("DD-MM-yyyy");
     if (horario > req.hora && fechaHoy === fechaSol) {
-      console.log("horario > hora");
+      console.log("Fuera Horario de Anulacion");
       return {
         res: false,
         message: "Fuera Horario Anulacion",

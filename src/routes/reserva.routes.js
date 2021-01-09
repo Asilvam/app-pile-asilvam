@@ -56,6 +56,7 @@ router.post("/", async (req, res) => {
   } = req.body;
   const valida = await funciones.valida_cupo(req.body, false, "");
   if (!valida.res) {
+    console.log(`Reserva Rechazada por: ${valida.message}`);
     res.json({
       status: "Reserva RECHAZADA",
       motivo: valida.message,
@@ -73,6 +74,7 @@ router.post("/", async (req, res) => {
       created_at,
       id,
     });
+    console.log("---------- Reserva Generada -----------");
     console.log(req.body);
     await reserva.save();
     await correo.enviarcorreo(req.body, 0);
@@ -104,14 +106,16 @@ router.delete("/:id", async (req, res) => {
   //console.log(reserva[0]._id);
   const valida = await funciones.valida_borrar(reserva[0], false, "");
   if (!valida.res) {
+    console.log(`Eliminacion Fallo por: ${valida.message}`);
     res.json({
       status: "Eliminacion Fallo",
       motivo: valida.message,
     });
   } else {
     await Reserva.findByIdAndRemove(reserva[0]._id);
-    await correo.enviarcorreo(reserva[0], 1);
+    console.log("---------- Reserva Eliminada -----------");
     console.log(reserva[0]);
+    await correo.enviarcorreo(reserva[0], 1);
     res.json({ status: "Reserva Eliminada" });
   }
 });
