@@ -180,9 +180,7 @@ module.exports = {
       let fechaSol = moment(req.fecha).format(momentFormat1);
       fechaSol = fechaSol + "Z";
       let fecha = new Date(fechaSol);
-      console.log(
-        "------------------------------- VALIDA CUPO -------------------------------"
-      );
+      console.log(" ---------- VALIDA CUPO ----------- ");
       console.log(
         moment().format("DD-MM-yyyy, hh:mm:ss a"),
         "Depto: ",
@@ -198,7 +196,7 @@ module.exports = {
       );
       let abiertoFn = generadorHorario("09:00", "21:00");
       let horario = moment().format("HH:mm");
-      console.log("Hora Intento: ", horario);
+      //console.log("Hora Intento: ", horario);
       //console.log(abiertoFn(horario));
       if (!abiertoFn(horario)) {
         return {
@@ -326,6 +324,7 @@ module.exports = {
     }
   },
   valida_borrar: async (req, res, message) => {
+    console.log(" ---------- VALIDA ANULACION ----------- ");
     let horario = moment().add(1, "hour").format("HH:mm");
     let fechaHoy = moment().format("DD-MM-yyyy");
     let fechaSol = moment(req.fechaST).format("DD-MM-yyyy");
