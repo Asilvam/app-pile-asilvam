@@ -79,7 +79,7 @@ module.exports = {
       html: textoHtml, // html body
     });
     if (opcion === 0) {
-      console.log(`Correo conformacion enviado a: ${req.email}`);
+      console.log(`Correo confirmacion enviado a: ${req.email}`);
     } else {
       console.log(`Correo anulacion enviado a: ${req.email}`);
     }

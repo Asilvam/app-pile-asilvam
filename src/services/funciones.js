@@ -180,7 +180,7 @@ module.exports = {
       let fechaSol = moment(req.fecha).format(momentFormat1);
       fechaSol = fechaSol + "Z";
       let fecha = new Date(fechaSol);
-      console.log(" ---------- VALIDA CUPO ----------- ");
+      console.log(" ---------- VALIDA RESERVA ----------- ");
       console.log(
         moment().format("DD-MM-yyyy, hh:mm:ss a"),
         "Depto: ",
