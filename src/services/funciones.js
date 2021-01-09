@@ -329,7 +329,6 @@ module.exports = {
     let fechaHoy = moment().format("DD-MM-yyyy");
     let fechaSol = moment(req.fechaST).format("DD-MM-yyyy");
     if (horario > req.hora && fechaHoy === fechaSol) {
-      console.log("Fuera Horario de Anulacion");
       return {
         res: false,
         message: "Fuera Horario Anulacion",
