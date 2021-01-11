@@ -1,5 +1,14 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+const moment = require("moment");
+
+import {
+  DatePicker,
+  TimePicker,
+  DateTimePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
+import MomentUtils from "@date-io/moment";
 
 const Formulario = ({ crearCita }) => {
   const [cita, actualizarCita] = useState({
@@ -12,6 +21,8 @@ const Formulario = ({ crearCita }) => {
     numero: "",
   });
 
+  const [selectedTime, setTime] = useState(new Date());
+
   const actualizarState = (e) => {
     actualizarCita({
       ...cita,
@@ -20,14 +31,16 @@ const Formulario = ({ crearCita }) => {
     //console.log(e.target.value);
   };
 
-  const { email, nombre, fecha, hora, depto, numero, celular } = cita;
+  // const { email, nombre, fecha, hora, depto, numero, celular } = cita;
+  const { email, nombre, fecha, depto, numero, celular } = cita;
 
   const addTask = (e) => {
     e.preventDefault();
     //console.log(fecha);
     cita.fechaST = fecha;
     cita.created_at = Date.now();
-    cita.id =  uuidv4() ;
+    cita.id = uuidv4();
+    cita.hora = moment(selectedTime).format("HH:mm");
     //console.log(cita.created_at);
     fetch("/api/reservas", {
       method: "POST",
@@ -224,7 +237,20 @@ const Formulario = ({ crearCita }) => {
           required
         />
 
-        <label>Hora </label>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
+          <TimePicker
+            label="Hora"
+            value={selectedTime}
+            onChange={setTime}
+            format="HH:mm"
+            fullWidth
+            inputVariant="standard"
+            ampm={false}
+            minutesStep={0}
+          />
+        </MuiPickersUtilsProvider>
+
+       {/*  <label>Hora </label>
         <input
           type="time"
           name="hora"
@@ -249,7 +275,7 @@ const Formulario = ({ crearCita }) => {
           <option value="18:00" />
           <option value="19:00" />
           <option value="20:00" />
-        </datalist>
+        </datalist> */}
 
         <label>Numero de personas</label>
         <input

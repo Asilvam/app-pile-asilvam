@@ -1,16 +1,9 @@
 const moment = require("moment");
-const moment2 = require("moment");
-const moment3 = require("moment");
-const moment4 = require("moment");
-const moment5 = require("moment");
+
 moment.defaultFormat = "DD/MM/YYYY";
-moment2.defaultFormat = "YYYY/MM/DD";
-moment3.defaultFormat = "YYYY-MM-DDT00:00:00";
-moment4.defaultFormat = "YYYY-MM-DD";
-moment5.defaultFormat = "PGCYYYYMMDDTHHMMSS";
+
 const momentFormat1 = "YYYY-MM-DDT00:00:00.000";
-const momentFormat2 = "DD/MM/YYYY";
-const momentFormat3 = "YYYY-MM-DD";
+
 const Reserva = require("../models/reserva");
 const deptos = [
   "201",
@@ -182,12 +175,12 @@ module.exports = {
       let fecha = new Date(fechaSol);
       console.log(" ---------- VALIDA RESERVA ----------- ");
       console.log(
-        moment().format("DD-MM-yyyy, hh:mm:ss a"),
+        moment().format("DD-MM-yyyy, HH:mm:ss "),
         "Depto: ",
         req.depto,
         "Nombre: ",
         req.nombre,
-        'Nº Celular: ',
+        "Nº Celular: ",
         req.celular,
         "Fecha: ",
         req.fecha,
@@ -198,6 +191,7 @@ module.exports = {
       );
       let abiertoFn = generadorHorario("09:00", "21:00");
       let horario = moment().format("HH:mm");
+      //let hora =moment(req.hora).format("HH:mm");
       //console.log("Hora Intento: ", horario);
       //console.log(abiertoFn(horario));
       if (!abiertoFn(horario)) {
@@ -207,7 +201,7 @@ module.exports = {
         };
       }
       if (horario > req.hora && fechaHoy === fechaSol) {
-        //console.log("horario > hora");
+        //console.log("horario > req.hora");
         return {
           res: false,
           message: "Horario Vencido",
@@ -326,16 +320,24 @@ module.exports = {
     }
   },
   valida_borrar: async (req, res, message) => {
-    console.log(" ---------- VALIDA ANULACION ----------- ");
-    let horario = moment().add(1, "hour").format("HH:mm");
-    let fechaHoy = moment().format("DD-MM-yyyy");
-    let fechaSol = moment(req.fechaST).format("DD-MM-yyyy");
-    if (horario > req.hora && fechaHoy === fechaSol) {
+    try {
+      console.log(" ---------- VALIDA ANULACION ----------- ");
+      let horario = moment().add(1, "hour").format("HH:mm");
+      let fechaHoy = moment().format("DD-MM-yyyy");
+      let fechaSol = moment(req.fechaST).format("DD-MM-yyyy");
+      //let hora =moment(req.hora).format("HH:mm");
+      if (horario > req.hora && fechaHoy === fechaSol) {
+        return {
+          res: false,
+          message: "Fuera Horario Anulacion",
+        };
+      }
+      return { res: true };
+    } catch (e) {
       return {
         res: false,
-        message: "Fuera Horario Anulacion",
+        message: e.message,
       };
     }
-    return { res: true };
   },
 };

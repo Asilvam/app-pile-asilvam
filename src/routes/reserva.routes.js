@@ -3,18 +3,10 @@ const router = express.Router();
 const correo = require("../services/correo");
 const funciones = require("../services/funciones");
 const moment = require("moment");
-const moment2 = require("moment");
-const moment3 = require("moment");
-const moment4 = require("moment");
-const moment5 = require("moment");
+
 moment.defaultFormat = "DD/MM/YYYY";
-moment2.defaultFormat = "YYYY/MM/DD";
-moment3.defaultFormat = "YYYY-MM-DDT00:00:00";
-moment4.defaultFormat = "YYYY-MM-DD";
-moment5.defaultFormat = "PGCYYYYMMDDTHHMMSS";
+
 const momentFormat1 = "YYYY-MM-DDT00:00:00.000";
-const momentFormat2 = "DD/MM/YYYY";
-const momentFormat3 = "YYYY-MM-DD";
 
 // Registro Model
 const Reserva = require("../models/reserva");
@@ -54,6 +46,7 @@ router.post("/", async (req, res) => {
     created_at,
     id,
   } = req.body;
+  //const hora =  moment(req.body.hora).format("HH:mm");
   const valida = await funciones.valida_cupo(req.body, false, "");
   if (!valida.res) {
     console.log(`Reserva Rechazada por: ${valida.message}`);
@@ -104,7 +97,7 @@ router.delete("/:id", async (req, res) => {
   const reserva = await Reserva.find({ id: req.params.id });
   //console.log(reserva);
   //console.log(reserva[0]._id);
-  
+
   const valida = await funciones.valida_borrar(reserva[0], false, "");
   if (!valida.res) {
     console.log(`Eliminacion Fallo por: ${valida.message}`);
