@@ -1,9 +1,6 @@
 const moment = require("moment");
-
 moment.defaultFormat = "DD/MM/YYYY";
-
 const momentFormat1 = "YYYY-MM-DDT00:00:00.000";
-
 const Reserva = require("../models/reserva");
 const deptos = [
   "201",
