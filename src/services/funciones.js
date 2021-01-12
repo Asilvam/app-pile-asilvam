@@ -333,7 +333,7 @@ module.exports = {
     } catch (e) {
       return {
         res: false,
-        message: e.message,
+        message: 'Reserva no Existe',
       };
     }
   },
