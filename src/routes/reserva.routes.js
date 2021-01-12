@@ -107,7 +107,7 @@ router.delete("/:id", async (req, res) => {
   } else {
     await Reserva.findByIdAndRemove(reserva[0]._id);
     console.log("Reserva Eliminada con Exito ");
-    console.log(reserva[0]);
+    //console.log(reserva[0]);
     await correo.enviarcorreo(reserva[0], 1);
     res.json({ status: "Reserva Eliminada" });
   }

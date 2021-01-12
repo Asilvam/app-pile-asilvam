@@ -319,6 +319,21 @@ module.exports = {
   valida_borrar: async (req, res, message) => {
     try {
       console.log(" ---------- VALIDA ANULACION ----------- ");
+      console.log(
+        moment().format("DD-MM-yyyy, HH:mm:ss "),
+        "Depto: ",
+        req.depto,
+        "Nombre: ",
+        req.nombre,
+        "Nº Celular: ",
+        req.celular,
+        "Fecha: ",
+        req.fecha,
+        "Hora: ",
+        req.hora,
+        "Cupos: ",
+        req.numero
+      );
       let horario = moment().add(1, "hour").format("HH:mm");
       let fechaHoy = moment().format("DD-MM");
       let fechaSol = req.fechaST;
