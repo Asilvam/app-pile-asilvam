@@ -31,8 +31,8 @@ const Formulario = ({ crearCita }) => {
     //console.log(e.target.value);
   };
 
-  // const { email, nombre, fecha, hora, depto, numero, celular } = cita;
-  const { email, nombre, fecha, depto, numero, celular } = cita;
+  const { email, nombre, fecha, hora, depto, numero, celular } = cita;
+  //const { email, nombre, fecha, depto, numero, celular } = cita;
 
   const addTask = (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ const Formulario = ({ crearCita }) => {
     cita.fechaST = moment(fecha).format("DD-MM"),
     cita.created_at = Date.now();
     cita.id = uuidv4();
-    cita.hora = moment(selectedTime).format("HH:mm");
+    //cita.hora = moment(selectedTime).format("HH:mm");
     //console.log(cita.created_at);
     fetch("/api/reservas", {
       method: "POST",
@@ -237,7 +237,7 @@ const Formulario = ({ crearCita }) => {
           required
         />
 
-        <MuiPickersUtilsProvider utils={MomentUtils}>
+        {/* <MuiPickersUtilsProvider utils={MomentUtils}>
           <TimePicker
             label="Hora"
             value={selectedTime}
@@ -248,9 +248,9 @@ const Formulario = ({ crearCita }) => {
             ampm={false}
             minutesStep={0}
           />
-        </MuiPickersUtilsProvider>
+        </MuiPickersUtilsProvider> */}
 
-       {/*  <label>Hora </label>
+        <label>Hora </label>
         <input
           type="time"
           name="hora"
@@ -275,7 +275,7 @@ const Formulario = ({ crearCita }) => {
           <option value="18:00" />
           <option value="19:00" />
           <option value="20:00" />
-        </datalist> */}
+        </datalist>
 
         <label>Numero de personas</label>
         <input
