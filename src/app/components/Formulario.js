@@ -37,7 +37,7 @@ const Formulario = ({ crearCita }) => {
   const addTask = (e) => {
     e.preventDefault();
     //console.log(fecha);
-    cita.fechaST = moment(fecha).format("DD-MM-yyyy"),
+    cita.fechaST = moment(fecha).format("DD-MM"),
     cita.created_at = Date.now();
     cita.id = uuidv4();
     cita.hora = moment(selectedTime).format("HH:mm");
