@@ -328,7 +328,7 @@ module.exports = {
         "Nº Celular: ",
         req.celular,
         "Fecha: ",
-        req.fecha,
+        moment(req.fecha).format("YYYY-MM-DD"),
         "Hora: ",
         req.hora,
         "Cupos: ",
@@ -348,7 +348,7 @@ module.exports = {
     } catch (e) {
       return {
         res: false,
-        message: 'Reserva no Existe',
+        message: "Reserva no Existe",
       };
     }
   },
