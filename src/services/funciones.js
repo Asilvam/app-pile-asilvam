@@ -320,8 +320,8 @@ module.exports = {
     try {
       console.log(" ---------- VALIDA ANULACION ----------- ");
       let horario = moment().add(1, "hour").format("HH:mm");
-      let fechaHoy = moment().format("DD-MM-yyyy");
-      let fechaSol = moment(req.fecha).format("DD-MM-yyyy");
+      let fechaHoy = moment().format("DD-MM");
+      let fechaSol = req.fechaST;
       //let hora =moment(req.hora).format("HH:mm");
       if (horario > req.hora && fechaHoy === fechaSol) {
         return {
