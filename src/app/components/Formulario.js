@@ -2,13 +2,6 @@ import React, { Fragment, useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 const moment = require("moment");
 
-import {
-  DatePicker,
-  TimePicker,
-  DateTimePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
-import MomentUtils from "@date-io/moment";
 
 const Formulario = ({ crearCita }) => {
   const [cita, actualizarCita] = useState({

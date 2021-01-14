@@ -1,8 +1,12 @@
 const nodemailer = require("nodemailer");
+const moment = require("moment");
 
 module.exports = {
   enviarcorreo: async (req, opcion) => {
     //console.log(opcion);
+    moment.locale('es');
+    let fechaST = moment(req.fecha).add(3, "hour").format("DD [de] MMMM");    
+    let fecha = moment(req.fecha).format("DD [de] MMMM");
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
@@ -14,8 +18,8 @@ module.exports = {
     });
     // send mail with defined transport object
     let textoReserva = `<span> Hola  ${req.nombre},<br> <br>Este Correo confirma tu reserva. <br> 
-    Para el dia ${req.fecha}, desde las ${req.hora} horas.<br>
-    Es para ${req.numero} personas.<br>
+    Para el dia ${fecha}, desde las ${req.hora} horas.<br>
+    Es para ${req.numero} persona(s).<br>
     <br>
     Antes de hacer ingreso al área de la piscina, debes tomarte la temperatura con un termómetro infrarrojo disponible en conserjería. <br>
     De salir la temperatura sobre lo normal, se te negará la entrada a la piscina, invitando a que te realices un examen de PCR. <br>
@@ -54,7 +58,7 @@ module.exports = {
     Nota: Este es un correo de respuesta automática, por lo tanto no contestes ni envíes correos a esta dirección de email.
     <span>`;
     let subjectReserva = "Reserva de Piscina ✔";
-    let textoElimina = `<span> Hola  ${req.nombre},<br> <br> Tu Reserva para el dia  ${req.fechaST} <br>
+    let textoElimina = `<span> Hola  ${req.nombre},<br> <br> Tu Reserva para el dia  ${fechaST} <br>
       Ha sido Eliminada con Exito.<br>
       <br>
       Saludos, <br>
