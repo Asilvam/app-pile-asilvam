@@ -328,7 +328,7 @@ module.exports = {
         "Nº Celular: ",
         req.celular,
         "Fecha: ",
-        moment(req.fecha).format("YYYY-MM-DD"),
+        moment(req.fecha).add(3, "hour").format("YYYY-MM-DD"),
         "Hora: ",
         req.hora,
         "Cupos: ",
