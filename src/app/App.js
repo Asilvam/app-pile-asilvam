@@ -38,10 +38,10 @@ function App() {
             .then((data) => {
               console.log(data);
               if (data.status === "Reserva Eliminada") {
-                M.toast({ html: "Reserva Eliminada" });
+                M.toast({ html: "Reserva Eliminada" },3000);
                 fetchTasks();
               } else {
-                window.M.toast({ html: `${data.motivo}` });
+                window.M.toast({ html: `${data.motivo}` },3000);
               }
             });
         } else {

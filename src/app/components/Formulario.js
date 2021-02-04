@@ -35,6 +35,7 @@ const Formulario = ({ crearCita }) => {
     cita.id = uuidv4();
     //cita.hora = moment(selectedTime).format("HH:mm");
     //console.log(cita.created_at);
+    window.M.toast({ html: "Validando Reserva !" },2000);
     fetch("/api/reservas", {
       method: "POST",
       body: JSON.stringify(cita),
@@ -47,7 +48,7 @@ const Formulario = ({ crearCita }) => {
       .then((data) => {
         console.log(data);
         if (data.status === "Reserva Generada") {
-          window.M.toast({ html: "Reserva Lista!" });
+          window.M.toast({ html: "Reserva Lista!" },3000);
           actualizarCita({
             email: "",
             nombre: "",
@@ -59,7 +60,7 @@ const Formulario = ({ crearCita }) => {
           });
           crearCita(cita);
         } else {
-          window.M.toast({ html: `${data.motivo}` });
+          window.M.toast({ html: `${data.motivo}` },3000);
         }
       })
       .catch((err) => console.error(err));
@@ -290,7 +291,7 @@ const Formulario = ({ crearCita }) => {
           <option value="4" />
         </datalist>
 
-        <button type="submit" className="btn deep-purple darken-4">
+        <button type="submit" className="btn deep-purple darken-4" onClick=''>
           Agregar Reserva
         </button>
       </form>
