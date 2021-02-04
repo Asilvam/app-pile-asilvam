@@ -16,6 +16,8 @@ const Formulario = ({ crearCita }) => {
 
   const [selectedTime, setTime] = useState(new Date());
 
+  const [botonActivo,setBotonActivo]= useState(false);
+
   const actualizarState = (e) => {
     actualizarCita({
       ...cita,
@@ -35,6 +37,7 @@ const Formulario = ({ crearCita }) => {
     cita.id = uuidv4();
     //cita.hora = moment(selectedTime).format("HH:mm");
     //console.log(cita.created_at);
+    setBotonActivo(true);
     window.M.toast({ html: "Validando Reserva !" },2000);
     fetch("/api/reservas", {
       method: "POST",
@@ -60,10 +63,11 @@ const Formulario = ({ crearCita }) => {
           });
           crearCita(cita);
         } else {
-          window.M.toast({ html: `${data.motivo}` },3000);
+          window.M.toast({ html: `${data.motivo}` },4000);
         }
       })
       .catch((err) => console.error(err));
+      setBotonActivo(false);
   };
 
   return (
@@ -291,7 +295,7 @@ const Formulario = ({ crearCita }) => {
           <option value="4" />
         </datalist>
 
-        <button type="submit" className="btn deep-purple darken-4" onClick=''>
+        <button type="submit" className="btn deep-purple darken-4" disabled={botonActivo}>
           Agregar Reserva
         </button>
       </form>
