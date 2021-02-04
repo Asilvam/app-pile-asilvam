@@ -2,22 +2,23 @@ const nodemailer = require("nodemailer");
 const moment = require("moment");
 
 module.exports = {
-  enviarcorreo: async (req, opcion) => {
-    //console.log(opcion);
-    moment.locale('es');
-    let fechaST = moment(req.fecha).add(3, "hour").format("DD [de] MMMM");    
-    let fecha = moment(req.fecha).format("DD [de] MMMM");
-    let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.USER, // generated ethereal user
-        pass: process.env.PASS, // generated ethereal password
-      },
-    });
-    // send mail with defined transport object
-    let textoReserva = `<span> Hola  ${req.nombre},<br> <br>Este Correo confirma tu reserva. <br> 
+  enviarcorreo: async (req, res, opcion, message) => {
+    try {
+      //console.log(opcion);
+      moment.locale("es");
+      let fechaST = moment(req.fecha).add(3, "hour").format("DD [de] MMMM");
+      let fecha = moment(req.fecha).format("DD [de] MMMM");
+      let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: process.env.USER, // generated ethereal user
+          pass: process.env.PASS, // generated ethereal password
+        },
+      });
+      // send mail with defined transport object
+      let textoReserva = `<span> Hola  ${req.nombre},<br> <br>Este Correo confirma tu reserva. <br> 
     Para el dia ${fecha}, desde las ${req.hora} horas.<br>
     Es para ${req.numero} persona(s).<br>
     <br>
@@ -57,8 +58,8 @@ module.exports = {
     <br>
     Nota: Este es un correo de respuesta automática, por lo tanto no contestes ni envíes correos a esta dirección de email.
     <span>`;
-    let subjectReserva = "Reserva de Piscina ✔";
-    let textoElimina = `<span> Hola  ${req.nombre},<br> <br> Tu Reserva para el dia  ${fechaST} <br>
+      let subjectReserva = "Reserva de Piscina ✔";
+      let textoElimina = `<span> Hola  ${req.nombre},<br> <br> Tu Reserva para el dia  ${fechaST} <br>
       Ha sido Eliminada con Exito.<br>
       <br>
       Saludos, <br>
@@ -66,26 +67,33 @@ module.exports = {
       <br>
       Nota: Este es un correo de respuesta automática, por lo tanto no contestes ni envíes correos a esta dirección de email.
       </span>`;
-    let subjectElimna = "Anulacion de Reserva";
-    let textoHtml = "";
-    let subject = "";
-    if (opcion === 0) {
-      textoHtml = textoReserva;
-      subject = subjectReserva;
-    } else {
-      textoHtml = textoElimina;
-      subject = subjectElimna;
-    }
-    let info = await transporter.sendMail({
-      from: 'Piscina JDC 1550', // sender address
-      to: req.email, // list of receivers
-      subject: subject, // Subject line
-      html: textoHtml, // html body
-    });
-    if (opcion === 0) {
-      console.log(`Correo confirmacion enviado a: ${req.email}`);
-    } else {
-      console.log(`Correo anulacion enviado a: ${req.email}`);
+      let subjectElimna = "Anulacion de Reserva";
+      let textoHtml = "";
+      let subject = "";
+      if (opcion === 0) {
+        textoHtml = textoReserva;
+        subject = subjectReserva;
+      } else {
+        textoHtml = textoElimina;
+        subject = subjectElimna;
+      }
+      let info = await transporter.sendMail({
+        from: "Piscina JDC 1550", // sender address
+        to: req.email, // list of receivers
+        subject: subject, // Subject line
+        html: textoHtml, // html body
+      });
+      if (opcion === 0) {
+        console.log(`Correo confirmacion enviado a: ${req.email}`);
+      } else {
+        console.log(`Correo anulacion enviado a: ${req.email}`);
+      }
+      return { res: true };
+    } catch (e) {
+      return {
+        res: false,
+        message: e.message,
+      };
     }
   },
 };

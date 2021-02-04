@@ -69,7 +69,10 @@ router.post("/", async (req, res) => {
     console.log("Reserva Generada con Exito");
     //console.log(req.body);
     await reserva.save();
-    await correo.enviarcorreo(req.body, 0);
+    const CorreoEnviado = await correo.enviarcorreo(req.body, false, 0, "");
+    if (!CorreoEnviado.res) {
+      console.log("Error al enviar Correo: ", CorreoEnviado.message);
+    }
     res.json({ status: "Reserva Generada" });
   }
 });
@@ -108,7 +111,10 @@ router.delete("/:id", async (req, res) => {
     await Reserva.findByIdAndRemove(reserva[0]._id);
     console.log("Reserva Eliminada con Exito ");
     //console.log(reserva[0]);
-    await correo.enviarcorreo(reserva[0], 1);
+    const CorreoEnviado = await correo.enviarcorreo(reserva[0], false, 1, "");
+    if (!CorreoEnviado.res) {
+      console.log("Error al enviar Correo: ", CorreoEnviado.message);
+    }
     res.json({ status: "Reserva Eliminada" });
   }
 });
