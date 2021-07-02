@@ -186,7 +186,7 @@ module.exports = {
                 "Cupos: ",
                 req.numero
             );
-            let abiertoFn = generadorHorario("00:00", "21:00");
+            let abiertoFn = generadorHorario("09:00", "21:00");
             let horario = moment().format("HH:mm");
             let horaSol = moment(req.hora).format("HH:mm");
             //let hora =moment(req.hora).format("HH:mm");
