@@ -186,7 +186,7 @@ module.exports = {
                 "Cupos: ",
                 req.numero
             );
-            let abiertoFn = generadorHorario("09:00", "21:00");
+            let abiertoFn = generadorHorario("00:00", "21:00");
             let horario = moment().format("HH:mm");
             let horaSol = moment(req.hora).format("HH:mm");
             //let hora =moment(req.hora).format("HH:mm");
@@ -329,9 +329,9 @@ module.exports = {
                 "Nº Celular: ",
                 req.celular,
                 "Fecha: ",
-                moment(req.fecha).add(3, "hour").format("YYYY-MM-DD"),
+                req.fechaST,
                 "Hora: ",
-                horaSol,
+                req.horaST,
                 "Cupos: ",
                 req.numero
             );
@@ -339,7 +339,7 @@ module.exports = {
             let fechaHoy = moment().format("DD-MM");
             let fechaSol = req.fechaST;
             //let hora =moment(req.hora).format("HH:mm");
-            if (horario > horaSol && fechaHoy === fechaSol) {
+            if (horario > req.horaST && fechaHoy === fechaSol) {
                 return {
                     res: false,
                     message: "Fuera Horario Anulacion",

@@ -55,6 +55,7 @@ function App() {
                                 </thead>
                                 <Reserva
                                     citas={citas}
+                                    fetchTasks={fetchTasks}
                                 />
                             </table>
                         </div>
