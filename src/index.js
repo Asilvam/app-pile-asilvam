@@ -3,7 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const app = express();
-const { mongoose } = require("./database");
+const {mongoose} = require("./database");
 
 //settings
 app.set("port", process.env.PORT || 4000);
@@ -20,5 +20,5 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //starting server
 app.listen(app.get("port"), () => {
-  console.log(`Server ON`);
+    console.log(`Server ON`);
 });

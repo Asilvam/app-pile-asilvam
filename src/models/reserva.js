@@ -7,6 +7,7 @@ const ReservaSchema = new Schema({
   fecha: { type: Date, required: true, trim: true },
   fechaST: { type: String, required: true, trim: true },
   hora: { type: String, required: true, trim: true },
+  horaST: { type: String, required: true, trim: true },
   depto: { type: String, required: true, trim: true },
   celular: { type: String, required: true, trim: true },
   numero: { type: Number, required: true, trim: true },
