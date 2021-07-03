@@ -1,6 +1,8 @@
 import React, {Fragment, useState, useEffect} from "react";
 import Formulario from "./components/Formulario";
 import Reserva from "./components/Reserva";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSwimmer} from "@fortawesome/free-solid-svg-icons";
 
 
 function App() {
@@ -32,7 +34,7 @@ function App() {
                 <nav className="deep-purple darken-4">
                     <div className="container">
                         <a href="/" className="brand-logo">
-                            <h5>Reservas PILE</h5>
+                            <h5><FontAwesomeIcon icon={faSwimmer} fixedWidth /> Reservas PILE</h5>
                         </a>
                     </div>
                 </nav>

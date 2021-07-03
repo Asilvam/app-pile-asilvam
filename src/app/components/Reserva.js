@@ -1,43 +1,63 @@
 import React from 'react';
 import Swal from "sweetalert2";
 
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+
 
 const Reserva = ({citas, fetchTasks}) => {
 
     const deleteTask = (id, email) => {
         console.log(email);
-        if (confirm("Esta Seguro de Eliminar la reserva?")) {
-            let correo = prompt("correo de validacion");
-            if (!(correo === null)) {
-                if (correo.trim().toLowerCase() == email.trim().toLowerCase()) {
-                    fetch(`/api/reservas/${id}`, {
-                        method: "DELETE",
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json",
-                        },
-                    })
-                        .then((res) => res.json())
-                        .then((data) => {
-                            console.log(data);
-                            if (data.status === "Reserva Eliminada") {
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: 'Reserva Eliminada!',
-                                    showConfirmButton: false,
-                                    timer: 3000
-                                });
-                                fetchTasks();
-                            } else {
-                                window.M.toast({html: `${data.motivo}`}, 3000);
-                            }
-                        });
-                } else {
-                    alert("Correo no Corresponde!");
+        Swal.fire({
+            title: 'Desea eliminar Reserva?',
+            text: "no podra anular esta accion!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let correo = prompt('Ingresa email ');
+                console.log('aca estamos !', correo);
+                if (correo) {
+                    if (correo.trim().toLowerCase() == email.trim().toLowerCase()) {
+                        fetch(`/api/reservas/${id}`, {
+                            method: "DELETE",
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json",
+                            },
+                        })
+                            .then((res) => res.json())
+                            .then((data) => {
+                                console.log(data);
+                                if (data.status === "Reserva Eliminada") {
+                                    Swal.fire(
+                                        'Eliminar!',
+                                        'Tu reserva ha sido eliminada.',
+                                        'success'
+                                    )
+                                    fetchTasks();
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: `${data.motivo}`,
+                                        icon: 'error'
+                                    })
+                                }
+                            });
+                    } else {
+                        Swal.fire(
+                            'Error!',
+                            'El correo no corresponde!',
+                            'error'
+                        )
+                    }
                 }
             }
-        }
+        })
     };
 
     return (
@@ -57,7 +77,7 @@ const Reserva = ({citas, fetchTasks}) => {
                                 style={{margin: "4px"}}
                                 onClick={() => deleteTask(cita.id, cita.email)}
                             >
-                                <i className="material-icons">delete</i>
+                                <FontAwesomeIcon icon={faTrashAlt} fixedWidth/>
                             </button>
                         }
                     </td>

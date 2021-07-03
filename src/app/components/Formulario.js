@@ -7,6 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 
 import Swal from "sweetalert2";
+import {faCalendarCheck, faSwimmer, faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 registerLocale('es', es);
 
@@ -23,7 +25,7 @@ const Formulario = ({crearCita}) => {
         numero: "",
     });
 
-    const [botonActivo, setBotonActivo] = useState(false);
+    const [generateLoading, setGenerateLoading] = useState(false);
 
     const actualizarState = (valor = null, campo = null) => {
         //console.log('if -> campo ', campo, ' valor ', valor);
@@ -31,7 +33,6 @@ const Formulario = ({crearCita}) => {
             ...cita,
             [campo]: valor,
         });
-
     };
 
     const {email, nombre, fecha, hora, depto, numero, celular} = cita;
@@ -40,10 +41,10 @@ const Formulario = ({crearCita}) => {
         e.preventDefault();
         //console.log(fecha);
         cita.fechaST = moment(fecha).format("DD-MM");
-        cita.horaST= moment(hora).format("HH:mm");
+        cita.horaST = moment(hora).format("HH:mm");
         cita.created_at = Date.now();
         cita.id = uuidv4();
-        setBotonActivo(true);
+        console.log('generateLoading ->', generateLoading);
         //window.M.toast({html: "Validando Reserva !"}, 2000);
         fetch("/api/reservas", {
             method: "POST",
@@ -57,13 +58,9 @@ const Formulario = ({crearCita}) => {
             .then((data) => {
                 console.log(data);
                 if (data.status === "Reserva Generada") {
-                    //window.M.toast({html: "Reserva Lista!"}, 3000);
                     Swal.fire({
-                        position: 'top-end',
                         icon: 'success',
-                        title: 'Reserva Lista!',
-                        showConfirmButton: false,
-                        timer: 3000
+                        title: 'Reserva Lista!'
                     });
                     crearCita(cita);
                     actualizarCita({
@@ -75,12 +72,25 @@ const Formulario = ({crearCita}) => {
                         celular: "",
                         numero: "",
                     });
+
                 } else {
-                    window.M.toast({html: `${data.motivo}`}, 4000);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: `${data.motivo}`,
+                        icon: 'error'
+                    })
                 }
             })
             .catch((err) => console.error(err));
-        setBotonActivo(false);
+
+    };
+
+    const spinner = () => {
+        setGenerateLoading(true);
+        //Faking API call here
+        setTimeout(() => {
+            setGenerateLoading(false);
+        }, 2000);
     };
 
     return (
@@ -267,6 +277,7 @@ const Formulario = ({crearCita}) => {
                 <input
                     type="number"
                     className="u-full-width"
+                    placeholder="Numero de cupos a utilizar"
                     min="1"
                     max="4"
                     name="numero"
@@ -281,8 +292,9 @@ const Formulario = ({crearCita}) => {
                     <option value="3"/>
                     <option value="4"/>
                 </datalist>
-                <button type="submit" className="btn deep-purple darken-4" disabled={botonActivo}>
-                    Agregar Reserva
+                <button type="submit" className="btn deep-purple darken-4" onClick={spinner} disabled={generateLoading}>
+                    {generateLoading && <FontAwesomeIcon icon={faSpinner} spin fixedWidth/>} <FontAwesomeIcon
+                    icon={faCalendarCheck} fixedWidth/> Generar Reserva
                 </button>
             </form>
         </Fragment>
