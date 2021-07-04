@@ -148,7 +148,7 @@ generadorHorario = (horaApertura, horaCierre) => {
 
 phonenumber = (inputtxt) => {
     //+56X XXXX XXXX
-    var phoneno = /^\+?([0-9]{3})\)?[ ]?([0-9]{4})[ ]?([0-9]{4})$/;
+    let phoneno = /^\+?([0-9]{3})\)?[ ]?([0-9]{4})[ ]?([0-9]{4})$/;
     if (inputtxt.value.match(phoneno)) {
         return true;
     } else {
@@ -169,7 +169,7 @@ module.exports = {
             fechaMan = fechaMan + "Z";
             let fechaSol = moment(req.fecha).format(momentFormat1);
             fechaSol = fechaSol + "Z";
-            let fecha = new Date();
+            //let fecha = new Date();
             console.log(" ---------- VALIDA RESERVA ----------- ");
             console.log(
                 moment().format("DD-MM-yyyy, HH:mm:ss "),
@@ -291,7 +291,7 @@ module.exports = {
             let total = 0;
             cupos.map((cupo) => (total += cupo.numero));
             //console.log(total);
-            numcupos = parseInt(req.numero);
+            const numcupos = parseInt(req.numero);
             if (4 - total === 0) {
                 return {
                     res: false,
@@ -315,7 +315,7 @@ module.exports = {
     },
     valida_borrar: async (req, res, message) => {
         try {
-            console.log(" ---------- VALIDA ANULACION ----------- ");
+            console.log(" ---------- VALIDA ANULACIÓN ----------- ");
             console.log(
                 moment().format("DD-MM-yyyy, HH:mm:ss "),
                 "Depto: ",
@@ -338,7 +338,7 @@ module.exports = {
             if (horario > req.horaST && fechaHoy === fechaSol) {
                 return {
                     res: false,
-                    message: "Fuera Horario Anulacion",
+                    message: "Fuera Horario Anulación",
                 };
             }
             return {res: true};
