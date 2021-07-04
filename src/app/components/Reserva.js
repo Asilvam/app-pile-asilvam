@@ -11,12 +11,13 @@ const Reserva = ({citas, fetchTasks}) => {
         console.log(email);
         Swal.fire({
             title: 'Desea eliminar Reserva?',
-            text: "no podra anular esta accion!",
+            text: "no podrá anular esta acción!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar!'
+            confirmButtonText: 'Si, eliminar!',
+            cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
                 let correo = prompt('Ingresa email ');

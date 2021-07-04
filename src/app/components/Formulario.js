@@ -39,13 +39,12 @@ const Formulario = ({crearCita}) => {
 
     const addTask = (e) => {
         e.preventDefault();
-        //console.log(fecha);
+        setGenerateLoading(true);
         cita.fechaST = moment(fecha).format("DD-MM");
         cita.horaST = moment(hora).format("HH:mm");
         cita.created_at = Date.now();
         cita.id = uuidv4();
         console.log('generateLoading ->', generateLoading);
-        //window.M.toast({html: "Validando Reserva !"}, 2000);
         fetch("/api/reservas", {
             method: "POST",
             body: JSON.stringify(cita),
@@ -80,17 +79,9 @@ const Formulario = ({crearCita}) => {
                         icon: 'error'
                     })
                 }
+                setGenerateLoading(false);
             })
             .catch((err) => console.error(err));
-
-    };
-
-    const spinner = () => {
-        setGenerateLoading(true);
-        //Faking API call here
-        setTimeout(() => {
-            setGenerateLoading(false);
-        }, 2000);
     };
 
     return (
@@ -292,7 +283,7 @@ const Formulario = ({crearCita}) => {
                     <option value="3"/>
                     <option value="4"/>
                 </datalist>
-                <button type="submit" className="btn deep-purple darken-4" onClick={spinner} disabled={generateLoading}>
+                <button type="submit" className="btn deep-purple darken-4" disabled={generateLoading}>
                     {generateLoading && <FontAwesomeIcon icon={faSpinner} spin fixedWidth/>} <FontAwesomeIcon
                     icon={faCalendarCheck} fixedWidth/> Generar Reserva
                 </button>

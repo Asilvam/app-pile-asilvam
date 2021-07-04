@@ -2,12 +2,15 @@ import React, {Fragment, useState, useEffect} from "react";
 import Formulario from "./components/Formulario";
 import Reserva from "./components/Reserva";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSwimmer} from "@fortawesome/free-solid-svg-icons";
+import {faSync, faSwimmer} from "@fortawesome/free-solid-svg-icons";
 
 
 function App() {
     // Arreglo de citas
     const [citas, guardarCitas] = useState([]);
+
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         fetchTasks();
     }, []);
@@ -17,16 +20,18 @@ function App() {
     };
 
     const fetchTasks = () => {
+        setLoading(true);
         fetch("/api/reservas")
             .then((res) => res.json())
             .then((data) => {
                 guardarCitas(data);
-                //console.log(data);
-            });
+                setLoading(false);
+            })
+            .catch((err) => console.error(err));
     };
 
     // Mensaje condicional
-    const titulo = citas.length === 0 ? "No hay reservas" : "Reservas";
+    const titulo = citas.length === 0 ? "No hay reservas" : "Reservas Activas";
 
     return (
         <Fragment>
@@ -34,7 +39,7 @@ function App() {
                 <nav className="deep-purple darken-4">
                     <div className="container">
                         <a href="/" className="brand-logo">
-                            <h5><FontAwesomeIcon icon={faSwimmer} fixedWidth /> Reservas PILE</h5>
+                            <h5><FontAwesomeIcon icon={faSwimmer} fixedWidth/> Reservas PILE</h5>
                         </a>
                     </div>
                 </nav>
@@ -44,6 +49,7 @@ function App() {
                             <Formulario crearCita={crearCita}/>
                         </div>
                         <div className="one-half column">
+                            {loading && <FontAwesomeIcon icon={faSync} spin />}
                             <h5>{titulo}</h5>
                             <table className="striped bordered">
                                 <thead>
