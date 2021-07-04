@@ -18,46 +18,53 @@ const Reserva = ({citas, fetchTasks}) => {
             confirmButtonText: 'Si, eliminar!',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
-            if (result.isConfirmed) {
-                let correo = prompt('Ingresa email ');
-                //console.log('aca estamos !', correo);
-                if (correo) {
-                    if (correo.trim().toLowerCase() == email.trim().toLowerCase()) {
-                        fetch(`/api/reservas/${id}`, {
-                            method: "DELETE",
-                            headers: {
-                                Accept: "application/json",
-                                "Content-Type": "application/json",
-                            },
-                        })
-                            .then((res) => res.json())
-                            .then((data) => {
-                                console.log(data.status);
-                                if (data.status === "Reserva Eliminada") {
-                                    Swal.fire(
-                                        'Eliminar!',
-                                        'Tu reserva ha sido eliminada.',
-                                        'success'
-                                    )
-                                    fetchTasks();
-                                } else {
-                                    Swal.fire({
-                                        title: 'Error!',
-                                        text: `${data.motivo}`,
-                                        icon: 'error'
-                                    })
-                                }
-                            });
+                if (result.isConfirmed) {
+                    let correo = prompt('Ingresa email ');
+                    //console.log('aca estamos !', correo);
+                    if (correo.length > 0) {
+                        if (correo.trim().toLowerCase() === email.trim().toLowerCase()) {
+                            fetch(`/api/reservas/${id}`, {
+                                method: "DELETE",
+                                headers: {
+                                    Accept: "application/json",
+                                    "Content-Type": "application/json",
+                                },
+                            })
+                                .then((res) => res.json())
+                                .then((data) => {
+                                    console.log(data.status);
+                                    if (data.status === "Reserva Eliminada") {
+                                        Swal.fire(
+                                            'Eliminar!',
+                                            'Tu reserva ha sido eliminada.',
+                                            'success'
+                                        )
+                                        fetchTasks();
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Error!',
+                                            text: `${data.motivo}`,
+                                            icon: 'error'
+                                        })
+                                    }
+                                });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                'El correo no corresponde!',
+                                'error'
+                            )
+                        }
                     } else {
                         Swal.fire(
                             'Error!',
-                            'El correo no corresponde!',
-                            'error'
-                        )
+                            'Debe ingresar un correo!',
+                            'error')
                     }
+
                 }
             }
-        })
+        )
     };
 
     return (
