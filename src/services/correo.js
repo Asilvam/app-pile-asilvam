@@ -19,7 +19,7 @@ module.exports = {
             });
             // send mail with defined transport object
             let textoReserva = `<span> Hola  ${req.nombre},<br> <br>Este Correo confirma tu reserva. <br> 
-    Para el dia ${fecha}, desde las ${ (req.horaST)} horas.<br>
+    Para el dia ${fecha}, desde las ${(req.horaST)} horas.<br>
     Es para ${req.numero} persona(s).<br>
     <br>
     Antes de hacer ingreso al área de la piscina, debes tomarte la temperatura con un termómetro infrarrojo disponible en conserjería. <br>
