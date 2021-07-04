@@ -44,7 +44,7 @@ const Formulario = ({crearCita}) => {
         cita.horaST = moment(hora).format("HH:mm");
         cita.created_at = Date.now();
         cita.id = uuidv4();
-        console.log('generateLoading ->', generateLoading);
+        //console.log('generateLoading ->', generateLoading);
         fetch("/api/reservas", {
             method: "POST",
             body: JSON.stringify(cita),
@@ -55,7 +55,7 @@ const Formulario = ({crearCita}) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                console.log(data.status);
                 if (data.status === "Reserva Generada") {
                     Swal.fire({
                         icon: 'success',

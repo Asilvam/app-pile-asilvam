@@ -4,11 +4,10 @@ import Swal from "sweetalert2";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 
-
 const Reserva = ({citas, fetchTasks}) => {
 
     const deleteTask = (id, email) => {
-        console.log(email);
+        //console.log(email);
         Swal.fire({
             title: 'Desea eliminar Reserva?',
             text: "no podrá anular esta acción!",
@@ -21,7 +20,7 @@ const Reserva = ({citas, fetchTasks}) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 let correo = prompt('Ingresa email ');
-                console.log('aca estamos !', correo);
+                //console.log('aca estamos !', correo);
                 if (correo) {
                     if (correo.trim().toLowerCase() == email.trim().toLowerCase()) {
                         fetch(`/api/reservas/${id}`, {
@@ -33,7 +32,7 @@ const Reserva = ({citas, fetchTasks}) => {
                         })
                             .then((res) => res.json())
                             .then((data) => {
-                                console.log(data);
+                                console.log(data.status);
                                 if (data.status === "Reserva Eliminada") {
                                     Swal.fire(
                                         'Eliminar!',
