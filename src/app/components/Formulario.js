@@ -28,7 +28,6 @@ const Formulario = ({crearCita}) => {
     const [generateLoading, setGenerateLoading] = useState(false);
 
     const actualizarState = (valor = null, campo = null) => {
-        //console.log('if -> campo ', campo, ' valor ', valor);
         actualizarCita({
             ...cita,
             [campo]: valor,

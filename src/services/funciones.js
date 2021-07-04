@@ -180,9 +180,9 @@ module.exports = {
                 "Nº Celular: ",
                 req.celular,
                 "Fecha: ",
-                req.fecha,
+                req.fechaST,
                 "Hora: ",
-                moment(req.hora).format("HH:mm"),
+                req.horaST,
                 "Cupos: ",
                 req.numero
             );
@@ -226,21 +226,21 @@ module.exports = {
                     message: "Nº personas No es valida",
                 };
             }
-            if (fechaMan != fechaSol && fechaHoy != fechaSol) {
+            if (fechaMan !== fechaSol && fechaHoy !== fechaSol) {
                 return {
                     res: false,
                     message: "La fecha No es valida",
                 };
             }
             // == 0 Domingo en ingles
-            if (new Date(req.fecha).getDay() == 1) {
+            if (new Date(req.fecha).getDay() === 1) {
                 return {
                     res: false,
                     message: "Lunes Cerrado",
                 };
             } else {
                 if (
-                    new Date(req.fecha).getDay() == 4 &&
+                    new Date(req.fecha).getDay() === 4 &&
                     (horaSol === "10:00" || horaSol === "11:00" || horaSol === "12:00" || horaSol === "13:00")
                 ) {
                     return {
