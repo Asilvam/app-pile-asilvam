@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 
 import Swal from "sweetalert2";
-import {faCalendarCheck, faSwimmer, faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {faCalendarCheck, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 registerLocale('es', es);
