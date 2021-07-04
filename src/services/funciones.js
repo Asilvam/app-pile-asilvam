@@ -232,20 +232,16 @@ module.exports = {
                     message: "La fecha No es valida",
                 };
             }
-            //console.log(fecha.getDay());
             // == 0 Domingo en ingles
-            if (fechaSol.getDay() == 1) {
+            if (new Date(req.fecha).getDay() == 1) {
                 return {
                     res: false,
                     message: "Lunes Cerrado",
                 };
             } else {
                 if (
-                    fechaSol.getDay() == 4 &&
-                    (horaSol === "10:00" ||
-                        horaSol === "11:00" ||
-                        horaSol === "12:00" ||
-                        horaSol === "13:00")
+                    new Date(req.fecha).getDay() == 4 &&
+                    (horaSol === "10:00" || horaSol === "11:00" || horaSol === "12:00" || horaSol === "13:00")
                 ) {
                     return {
                         res: false,
