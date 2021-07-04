@@ -234,14 +234,14 @@ module.exports = {
             }
             //console.log(fecha.getDay());
             // == 0 Domingo en ingles
-            if (fecha.getDay() == 1) {
+            if (fechaSol.getDay() == 1) {
                 return {
                     res: false,
                     message: "Lunes Cerrado",
                 };
             } else {
                 if (
-                    fecha.getDay() == 3 &&
+                    fechaSol.getDay() == 4 &&
                     (horaSol === "10:00" ||
                         horaSol === "11:00" ||
                         horaSol === "12:00" ||
