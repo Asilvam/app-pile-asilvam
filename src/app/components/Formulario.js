@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 
 import Swal from "sweetalert2";
-import {faCalendarCheck, faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {faCalendarCheck, faEdit, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 registerLocale('es', es);
@@ -86,7 +86,7 @@ const Formulario = ({crearCita}) => {
 
     return (
         <Fragment>
-            <h5> Crea Reserva</h5>
+            <h5>Crea Reserva <FontAwesomeIcon icon={faEdit} fixedWidth/> </h5>
             <form onSubmit={addTask}>
                 <label>Ingrese correo</label>
                 <input
