@@ -22,7 +22,7 @@ const Formulario = ({crearCita}) => {
         hora: moment('10:00', 'HH:mm').toDate(),
         depto: "",
         celular: "",
-        numero: "",
+        numero: ""
     });
 
     const [generateLoading, setGenerateLoading] = useState(false);

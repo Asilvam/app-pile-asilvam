@@ -1,71 +1,93 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Swal from "sweetalert2";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 
+import Modal, {ModalTransition} from '@atlaskit/modal-dialog';
+
+
 const Reserva = ({citas, fetchTasks}) => {
 
-    const deleteTask = (id, email) => {
-        //console.log(email);
-        Swal.fire({
-            title: 'Desea eliminar Reserva?',
-            text: "no podrá anular esta acción!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar!',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-                if (result.isConfirmed) {
-                    let correo = prompt('Ingresa email ');
-                    //console.log('aca estamos !', correo);
-                    if (correo.length > 0) {
-                        if (correo.trim().toLowerCase() === email.trim().toLowerCase()) {
-                            fetch(`/api/reservas/${id}`, {
-                                method: "DELETE",
-                                headers: {
-                                    Accept: "application/json",
-                                    "Content-Type": "application/json",
-                                },
-                            })
-                                .then((res) => res.json())
-                                .then((data) => {
-                                    console.log(data.status);
-                                    if (data.status === "Reserva Eliminada") {
-                                        Swal.fire(
-                                            'Eliminar!',
-                                            'Tu reserva ha sido eliminada.',
-                                            'success'
-                                        )
-                                        fetchTasks();
-                                    } else {
-                                        Swal.fire({
-                                            title: 'Error!',
-                                            text: `${data.motivo}`,
-                                            icon: 'error'
-                                        })
-                                    }
-                                });
-                        } else {
-                            Swal.fire(
-                                'Error!',
-                                'El correo no corresponde!',
-                                'error'
-                            )
-                        }
-                    } else {
-                        Swal.fire(
-                            'Error!',
-                            'Debe ingresar un correo!',
-                            'error')
-                    }
+    const [modal, setModal] = useState(false);
 
-                }
-            }
-        )
+    const [datoCorreo, setDatosCorreo] = useState({
+        correo: ''
+    });
+
+    const [datoId, setDatosId] = useState({
+        id: ''
+    });
+
+    const [datoEmail, setDatosEmail] = useState({
+        email: ''
+    });
+
+
+    const updateState = e => {
+        setDatosCorreo({
+            [e.target.name]: e.target.value
+        })
     };
+
+    const toggle = () => {
+        setModal(!modal);
+        setDatosCorreo({correo: ''});
+    }
+
+    const openModal = (id = null, email = null) => {
+        //console.log(id, ' ', email);
+        setDatosId({id: id});
+        setDatosEmail({email: email});
+        //console.log(datoCorreo, ' ', datoId, ' ', datoEmail);
+        toggle();
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        toggle();
+        if (datoCorreo.correo.length > 0) {
+            //console.log(datoCorreo,  datoId, datoEmail);
+            if (datoCorreo.correo.trim().toLowerCase() === datoEmail.email.trim().toLowerCase()) {
+                fetch(`/api/reservas/${datoId.id}`, {
+                    method: "DELETE",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data.status);
+                        if (data.status === "Reserva Eliminada") {
+                            Swal.fire(
+                                'Eliminar!',
+                                'Tu reserva ha sido eliminada.',
+                                'success'
+                            )
+                            fetchTasks();
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: `${data.motivo}`,
+                                icon: 'error'
+                            })
+                        }
+                    });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'El correo no corresponde!',
+                    'error'
+                )
+            }
+        } else {
+            Swal.fire(
+                'Error!',
+                'Debe ingresar un correo!',
+                'error')
+        }
+    }
 
     return (
         <>
@@ -81,8 +103,8 @@ const Reserva = ({citas, fetchTasks}) => {
                         {
                             <button
                                 className="btn deep-purple darken-4"
-                                style={{margin: "4px"}}
-                                onClick={() => deleteTask(cita.id, cita.email)}
+                                style={{margin: "5px"}}
+                                onClick={() => openModal(cita.id, cita.email)}
                             >
                                 <FontAwesomeIcon icon={faTrashAlt} fixedWidth/>
                             </button>
@@ -91,9 +113,57 @@ const Reserva = ({citas, fetchTasks}) => {
                 </tr>
             ))}
             </tbody>
+            <ModalTransition>
+                {modal && (
+                    <Modal
+                        onClose={toggle}
+                        heading="Eliminar Reserva"
+                        appearance="warning"
+                    >
+                        <>
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="callout callout-info">
+                                        Recuerda que esta acción no es reversible.
+                                        Y perderás tu reserva.
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="form-group">
+                                        <>
+                                            <form onSubmit={handleSubmit}>
+                                                <input
+                                                    type="email"
+                                                    name="correo"
+                                                    className="u-full-width"
+                                                    placeholder="Ingrese correo"
+                                                    onChange={updateState}
+                                                    value={datoCorreo.correo}
+                                                    autoFocus
+                                                    required
+                                                />
+                                                <button type="submit" className="btn deep-purple darken-4">
+                                                    Aceptar
+                                                </button>
+                                                <button type="button" className="btn deep-purple darken-4"
+                                                        style={{margin: "10px"}}
+                                                        onClick={toggle}
+                                                >
+                                                    Cancelar
+                                                </button>
+                                            </form>
+                                        </>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    </Modal>
+                )}
+            </ModalTransition>
         </>
     );
 };
 
 export default Reserva;
-
