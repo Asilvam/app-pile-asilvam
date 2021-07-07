@@ -119,10 +119,11 @@ const Reserva = ({citas, fetchTasks}) => {
                         onClose={toggle}
                         heading="Eliminar Reserva"
                         appearance="warning"
+                        width={'small'}
                     >
                         <>
                             <div className="row">
-                                <div className="col-md-12">
+                                <div className="one-half column">
                                     <div className="callout callout-info">
                                         Recuerda que esta acción no es reversible.
                                         Y perderás tu reserva.
@@ -130,7 +131,7 @@ const Reserva = ({citas, fetchTasks}) => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-12">
+                                <div className="one-half column">
                                     <div className="form-group">
                                         <>
                                             <form onSubmit={handleSubmit}>
