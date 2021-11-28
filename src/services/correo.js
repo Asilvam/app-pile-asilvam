@@ -33,7 +33,7 @@ module.exports = {
     <br>
     Protocolo piscina por covid-19:<br>
     Aforo<br>
-    <li>En el área piscina, se permitirán sólo 4 (cuatro) personas dentro del recinto, quiere decir dentro del perímetro de la reja.</li>
+    <li>En el área piscina, se permitirán sólo 6 (cuatro) personas dentro del recinto, quiere decir dentro del perímetro de la reja.</li>
     <li>En el área de los jardines podrán estar hasta un máximo de 10 (diez) personas, con una distancia social de 10 metros.</li>
     <br>
     Medidas especiales:<br>
