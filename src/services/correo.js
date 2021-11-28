@@ -4,16 +4,17 @@ const moment = require("moment");
 module.exports = {
     enviarcorreo: async (req, res, opcion, message) => {
         try {
-            //console.log(opcion);
+            // console.log('User-->', process.env.USERGMAIL);
+            // console.log('Pass-->', process.env.PASS);
             moment.locale("es");
             let fechaST = moment(req.fecha).add(3, "hour").format("DD [de] MMMM");
             let fecha = moment(req.fecha).format("DD [de] MMMM");
             let transporter = nodemailer.createTransport({
                 host: "smtp.gmail.com",
-                port: 587,
-                secure: false, // true for 465, false for other ports
+                port: 465,
+                secure: true, // true for 465, false for other ports
                 auth: {
-                    user: process.env.USER, // generated ethereal user
+                    user: process.env.USERGMAIL, // generated ethereal user
                     pass: process.env.PASS, // generated ethereal password
                 },
             });
@@ -67,7 +68,7 @@ module.exports = {
       <br>
       Nota: Este es un correo de respuesta automática, por lo tanto no contestes ni envíes correos a esta dirección de email.
       </span>`;
-            let subjectElimna = "Anulacion de Reserva";
+            let subjectElimina = "Anulacion de Reserva";
             let textoHtml = "";
             let subject = "";
             if (opcion === 0) {
@@ -75,7 +76,7 @@ module.exports = {
                 subject = subjectReserva;
             } else {
                 textoHtml = textoElimina;
-                subject = subjectElimna;
+                subject = subjectElimina;
             }
             let info = await transporter.sendMail({
                 from: "Piscina JDC 1550", // sender address

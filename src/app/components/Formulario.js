@@ -268,9 +268,9 @@ const Formulario = ({crearCita}) => {
                 <input
                     type="number"
                     className="u-full-width"
-                    placeholder="Numero de cupos a utilizar"
+                    placeholder="Numero de cupos a utilizar 1-6"
                     min="1"
-                    max="4"
+                    max='6'
                     name="numero"
                     onChange={(numero) => actualizarState(numero.target.value, 'numero')}
                     value={numero}
@@ -282,6 +282,8 @@ const Formulario = ({crearCita}) => {
                     <option value="2"/>
                     <option value="3"/>
                     <option value="4"/>
+                    <option value="5"/>
+                    <option value="6"/>
                 </datalist>
                 <button type="submit" className="btn deep-purple darken-4" disabled={generateLoading}>
                     {generateLoading && <FontAwesomeIcon icon={faSpinner} spin fixedWidth/>} <FontAwesomeIcon

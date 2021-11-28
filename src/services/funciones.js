@@ -121,7 +121,7 @@ const horas = [
     "19:00",
     "20:00",
 ];
-const nopersonas = ["1", "2", "3", "4"];
+const nopersonas = ["1", "2", "3", "4",'5','6'];
 
 formateaMomento = (momento) => {
     const regexp = /\d\d:\d\d(:\d\d)?/;
@@ -186,7 +186,7 @@ module.exports = {
                 "Cupos: ",
                 req.numero
             );
-            let abiertoFn = generadorHorario("00:00", "21:00");
+            let abiertoFn = generadorHorario("00:00", "23:59");
             let horario = moment().format("HH:mm");
             let horaSol = moment(req.hora).format("HH:mm");
             //let hora =moment(req.hora).format("HH:mm");
@@ -292,13 +292,14 @@ module.exports = {
             cupos.map((cupo) => (total += cupo.numero));
             //console.log(total);
             const numcupos = parseInt(req.numero);
-            if (4 - total === 0) {
+            const cuposTotales = process.env.CUPOS;
+            if (cuposTotales - total === 0) {
                 return {
                     res: false,
                     message: "No Hay Cupos",
                 };
             } else {
-                if (!(4 - total >= numcupos)) {
+                if (!(cuposTotales - total >= numcupos)) {
                     return {
                         res: false,
                         message: "Cupos insuficientes",
