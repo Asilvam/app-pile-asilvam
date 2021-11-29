@@ -4,10 +4,13 @@ import Reserva from "./components/Reserva";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSync, faSwimmer} from "@fortawesome/free-solid-svg-icons";
 
+import axios from 'axios';
+
+
 
 function App() {
     // Arreglo de citas
-    const [citas, guardarCitas] = useState([]);
+    const [citas, setCitas] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
@@ -16,7 +19,7 @@ function App() {
     }, []);
 
     const crearCita = (cita) => {
-        guardarCitas([...citas, cita]);
+        setCitas([...citas, cita]);
     };
 
     const fetchTasks = () => {
@@ -24,11 +27,15 @@ function App() {
         fetch("/api/reservas")
             .then((res) => res.json())
             .then((data) => {
-                guardarCitas(data);
+                setCitas(data);
                 setLoading(false);
             })
             .catch((err) => console.error(err));
     };
+
+    const getCitas=()=>{
+
+    }
 
     // Mensaje condicional
     const titulo = citas.length === 0 ? "No hay reservas" : "Reservas Activas";

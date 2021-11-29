@@ -241,11 +241,11 @@ module.exports = {
             } else {
                 if (
                     new Date(req.fecha).getDay() == 4 &&
-                    (horaSol === "10:00" || horaSol === "11:00" || horaSol === "12:00" || horaSol === "13:00")
+                    (horaSol === "10:00" || horaSol === "11:00" || horaSol === "12:00" || horaSol === "13:00" || horaSol === "14:00")
                 ) {
                     return {
                         res: false,
-                        message: "Jueves solo tarde",
+                        message: "Jueves desde las 15 hrs",
                     };
                 }
             }
