@@ -9,32 +9,26 @@ import axios from 'axios';
 
 
 function App() {
-    // Arreglo de citas
     const [citas, setCitas] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetchTasks();
+        getCitas();
     }, []);
 
     const crearCita = (cita) => {
         setCitas([...citas, cita]);
     };
 
-    const fetchTasks = () => {
+    const getCitas=()=>{
         setLoading(true);
-        fetch("/api/reservas")
-            .then((res) => res.json())
-            .then((data) => {
-                setCitas(data);
+        axios.get('/api/reservas')
+            .then(response => {
+                setCitas(response.data);
                 setLoading(false);
             })
             .catch((err) => console.error(err));
-    };
-
-    const getCitas=()=>{
-
     }
 
     // Mensaje condicional
@@ -70,7 +64,7 @@ function App() {
                                 </thead>
                                 <Reserva
                                     citas={citas}
-                                    fetchTasks={fetchTasks}
+                                    getCitas={getCitas}
                                 />
                             </table>
                         </div>

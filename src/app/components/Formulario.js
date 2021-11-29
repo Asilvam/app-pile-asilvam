@@ -10,12 +10,14 @@ import Swal from "sweetalert2";
 import {faCalendarCheck, faSpinner,faEdit} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
+import axios from 'axios';
+
 registerLocale('es', es);
 
 const moment = require("moment");
 
 const Formulario = ({crearCita}) => {
-    const [cita, actualizarCita] = useState({
+    const [cita, setCita] = useState({
         email: "",
         nombre: "",
         fecha: new Date(),
@@ -28,8 +30,7 @@ const Formulario = ({crearCita}) => {
     const [generateLoading, setGenerateLoading] = useState(false);
 
     const actualizarState = (valor = null, campo = null) => {
-        //console.log('if -> campo ', campo, ' valor ', valor);
-        actualizarCita({
+        setCita({
             ...cita,
             [campo]: valor,
         });
@@ -45,24 +46,15 @@ const Formulario = ({crearCita}) => {
         cita.created_at = Date.now();
         cita.id = uuidv4();
         //console.log('generateLoading ->', generateLoading);
-        fetch("/api/reservas", {
-            method: "POST",
-            body: JSON.stringify(cita),
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data.status);
-                if (data.status === "Reserva Generada") {
+        axios.post('/api/reservas',cita)
+            .then(response => {
+                if (response.data.status === "Reserva Generada") {
                     Swal.fire({
                         icon: 'success',
                         title: 'Reserva Lista!'
                     });
                     crearCita(cita);
-                    actualizarCita({
+                    setCita({
                         email: "",
                         nombre: "",
                         fecha: new Date(),
@@ -75,7 +67,7 @@ const Formulario = ({crearCita}) => {
                 } else {
                     Swal.fire({
                         title: 'Error!',
-                        text: `${data.motivo}`,
+                        text: `${response.data.motivo}`,
                         icon: 'error'
                     })
                 }
