@@ -28,7 +28,8 @@ router.get("/", async (req, res) => {
 
 // GET one Registro
 router.get("/:id", async (req, res) => {
-    const reserva = await Reserva.findById(req.params.id);
+    // const reserva = await Reserva.findById(req.params.id);
+    const reserva = await Reserva.find({id: req.params.id});
     res.json(reserva);
 });
 
