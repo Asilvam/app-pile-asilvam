@@ -38,7 +38,7 @@ const Formulario = ({crearCita}) => {
 
     const {email, nombre, fecha, hora, depto, numero, celular} = cita;
 
-    const addTask = (e) => {
+    const addCita = (e) => {
         e.preventDefault();
         setGenerateLoading(true);
         cita.fechaST = moment(fecha).format("DD-MM");
@@ -79,7 +79,7 @@ const Formulario = ({crearCita}) => {
     return (
         <Fragment>
             <h5><FontAwesomeIcon icon={faEdit} fixedWidth/>Reserva</h5>
-            <form onSubmit={addTask}>
+            <form onSubmit={addCita}>
                 <label>Correo</label>
                 <input
                     type="email"

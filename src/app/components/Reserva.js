@@ -39,7 +39,7 @@ const Reserva = ({citas, getCitas}) => {
                                         icon: 'error'
                                     })
                                 }
-                            } )
+                            })
                             .catch((err) => console.error(err))
                     } else {
                         Swal.fire(
