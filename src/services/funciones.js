@@ -121,7 +121,7 @@ const horas = [
     "19:00",
     "20:00",
 ];
-const nopersonas = ["1", "2", "3", "4",'5','6'];
+const nopersonas = ["1", "2", "3", "4",'5','6','7','8','9','10','11','12','13','14','15'];
 
 formateaMomento = (momento) => {
     const regexp = /\d\d:\d\d(:\d\d)?/;
