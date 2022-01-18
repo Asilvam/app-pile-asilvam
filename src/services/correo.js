@@ -33,8 +33,7 @@ module.exports = {
     <br>
     Protocolo piscina por covid-19:<br>
     Aforo<br>
-    <li>En el área piscina, se permitirán sólo 6 (seis) personas dentro del recinto, quiere decir dentro del perímetro de la reja.</li>
-    <li>En el área de los jardines podrán estar hasta un máximo de 10 (diez) personas, con una distancia social de 10 metros.</li>
+    <li>En el área piscina, se permitirán sólo 15 (quince) personas dentro del recinto, quiere decir dentro del perímetro de la reja.</li>
     <br>
     Medidas especiales:<br>
     <li>Queda prohibido el ingreso de visitas al sector de la piscina.</li>
@@ -49,7 +48,7 @@ module.exports = {
     <li>Lunes		- Cerrado todo el día por mantención</li> 
     <li>Martes	- 10:00 a 20:00</li>
     <li>Miércoles	- 10:00 a 20:00</li>
-    <li>Jueves	- Cerrado hasta las 14:00 horas por mantención</li>
+    <li>Jueves	- Cerrado hasta las 15:00 horas por mantención</li>
     <li>Viernes	- 10:00 a 20:00</li> 
     <li>Sábado	- 10:00 a 20:00</li> 
     <li>Domingo	- 10:00 a 20:00</li>

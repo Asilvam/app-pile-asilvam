@@ -46,8 +46,8 @@ router.post("/", async (req, res) => {
         created_at,
         id,
     } = req.body;
-    const fecha = moment(req.body.fecha).format(momentFormat1)+'Z';
-    const hora =  moment(req.body.hora).format("HH:mm");
+    const fecha = moment(req.body.fecha).format(momentFormat1) + 'Z';
+    const hora = moment(req.body.hora).format("HH:mm");
     const valida = await funciones.valida_cupo(req.body, false, "");
     if (!valida.res) {
         console.log(`Reserva Rechazada por: ${valida.message}`);
