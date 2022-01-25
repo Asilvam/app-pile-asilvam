@@ -28,7 +28,7 @@ module.exports = {
     En caso de no hacerlo por cualquier razón, el conserje está facultado para pedirte que abandones la piscina. <strong>¡No vayas a olvidarlo! </strong> <br>
     <br>
     Recuerda que: <br>
-    La mantención de la piscina en temporada alta es de 2 veces por semana, por este motivo está cerrada todo el día lunes y la mañana del jueves hasta las 14:00 hrs.<br>
+    La mantención de la piscina en temporada alta es de 2 veces por semana, por este motivo está cerrada todo el día lunes y la mañana del jueves hasta las 15:00 hrs.<br>
     Para mantener la piscina en funcionamiento necesitamos que tod@s sigan las normas.<br>
     <br>
     Protocolo piscina por covid-19:<br>
