@@ -55,7 +55,7 @@ module.exports = {
             //let fecha = new Date();
             console.log(" ---------- VALIDA RESERVA ----------- ");
             console.log(moment().format("DD-MM-yyyy, HH:mm:ss "), "Depto: ", req.depto, "Nombre: ", req.nombre, "Nº Celular: ", req.celular, "Fecha: ", req.fecha, "Hora: ", moment(req.hora).format("HH:mm"), "Cupos: ", req.numero);
-            let abiertoFn = generadorHorario("09:00", "21:00");
+            let abiertoFn = generadorHorario("09:00", "23:59");
             let horario = moment().format("HH:mm");
             let horaSol = moment(req.hora).format("HH:mm");
             //let hora =moment(req.hora).format("HH:mm");
