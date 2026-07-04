@@ -4,18 +4,22 @@ const moment = require("moment");
 module.exports = {
     enviarcorreo: async (req, res, opcion, message) => {
         try {
-            // console.log('User-->', process.env.USERGMAIL);
-            // console.log('Pass-->', process.env.PASS);
+            const mailPort = Number(process.env.MAIL_PORT);
+            const mailSecure = String(process.env.MAIL_SECURE );
+            const mailUser = process.env.MAIL_USER;
+            const mailPassword = process.env.MAIL_PASSWORD;
+            const mailFromName = process.env.MAIL_FROM_NAME;
+            const mailFrom = process.env.MAIL_FROM;
             moment.locale("es");
             let fechaST = moment(req.fecha).add(3, "hour").format("DD [de] MMMM");
             let fecha = moment(req.fecha).format("DD [de] MMMM");
             let transporter = nodemailer.createTransport({
-                host: "smtp.gmail.com",
-                port: 465,
-                secure: true, // true for 465, false for other ports
+                host: process.env.MAIL_HOST,
+                port: mailPort,
+                secure: mailSecure,
                 auth: {
-                    user: process.env.USERGMAIL, // generated ethereal user
-                    pass: process.env.PASS, // generated ethereal password
+                    user: mailUser,
+                    pass: mailPassword,
                 },
             });
             // send mail with defined transport object
@@ -78,7 +82,7 @@ module.exports = {
                 subject = subjectElimina;
             }
             let info = await transporter.sendMail({
-                from: "Piscina JDC 1550", // sender address
+                from: "\"" + mailFromName + "\" <" + mailFrom + ">", // sender address
                 to: req.email, // list of receivers
                 subject: subject, // Subject line
                 html: textoHtml, // html body
