@@ -31,6 +31,9 @@ module.exports = {
                     user: mailUser,
                     pass: mailPassword,
                 },
+                connectionTimeout: Number(process.env.MAIL_CONNECTION_TIMEOUT || 10000),
+                greetingTimeout: Number(process.env.MAIL_GREETING_TIMEOUT || 10000),
+                socketTimeout: Number(process.env.MAIL_SOCKET_TIMEOUT || 20000),
             });
             // send mail with defined transport object
             let textoReserva = `<span> Hola  ${req.nombre},<br> <br>Este Correo confirma tu reserva. <br> 
@@ -91,6 +94,7 @@ module.exports = {
                 textoHtml = textoElimina;
                 subject = subjectElimina;
             }
+            console.log("[correo] Ejecutando sendMail...");
             let info = await transporter.sendMail({
                 from: "\"" + mailFromName + "\" <" + mailFrom + ">", // sender address
                 to: req.email, // list of receivers
