@@ -4,17 +4,27 @@ const moment = require("moment");
 module.exports = {
     enviarcorreo: async (req, res, opcion, message) => {
         try {
-            const mailPort = Number(process.env.MAIL_PORT);
-            const mailSecure = String(process.env.MAIL_SECURE );
-            const mailUser = process.env.MAIL_USER;
-            const mailPassword = process.env.MAIL_PASSWORD;
-            const mailFromName = process.env.MAIL_FROM_NAME;
-            const mailFrom = process.env.MAIL_FROM;
+            const mailHost = process.env.MAIL_HOST || "smtp.gmail.com";
+            const mailPort = Number(process.env.MAIL_PORT || 465);
+            const mailSecure = String(process.env.MAIL_SECURE || "true").toLowerCase() === "true";
+            const mailUser = process.env.MAIL_USER || process.env.USERGMAIL;
+            const mailPassword = process.env.MAIL_PASSWORD || process.env.PASS;
+            const mailFromName = process.env.MAIL_FROM_NAME || "Piscina JDC 1550";
+            const mailFrom = process.env.MAIL_FROM || mailUser;
+            const missingMailVars = [];
+            if (!mailHost) missingMailVars.push("MAIL_HOST");
+            if (!mailUser) missingMailVars.push("MAIL_USER");
+            if (!mailPassword) missingMailVars.push("MAIL_PASSWORD");
+            if (!mailFrom) missingMailVars.push("MAIL_FROM");
+            if (missingMailVars.length > 0) {
+                console.warn("[correo] Variables SMTP faltantes: " + missingMailVars.join(", "));
+            }
+            console.log("[correo] Preparando envio opcion=" + opcion + " host=" + mailHost + " port=" + mailPort + " secure=" + mailSecure + " user=" + (mailUser || "<sin usuario>") + " from=" + mailFromName + " <" + (mailFrom || "sin remitente") + "> to=" + req.email);
             moment.locale("es");
             let fechaST = moment(req.fecha).add(3, "hour").format("DD [de] MMMM");
             let fecha = moment(req.fecha).format("DD [de] MMMM");
             let transporter = nodemailer.createTransport({
-                host: process.env.MAIL_HOST,
+                host: mailHost,
                 port: mailPort,
                 secure: mailSecure,
                 auth: {
@@ -87,13 +97,18 @@ module.exports = {
                 subject: subject, // Subject line
                 html: textoHtml, // html body
             });
+            console.log("[correo] Envio OK to=" + req.email + " messageId=" + (info.messageId || "sin-message-id") + " response=" + (info.response || "sin-response"));
             if (opcion === 0) {
-                console.log(`Correo confirmacion enviado a: ${req.email}`);
+                console.log("Correo confirmacion enviado a: " + req.email);
             } else {
-                console.log(`Correo anulacion enviado a: ${req.email}`);
+                console.log("Correo anulacion enviado a: " + req.email);
             }
             return {res: true};
         } catch (e) {
+            console.error("[correo] Error enviando correo: message=" + e.message + " code=" + (e.code || "sin-code") + " responseCode=" + (e.responseCode || "sin-response-code") + " command=" + (e.command || "sin-command"));
+            if (e.response) {
+                console.error("[correo] SMTP response: " + e.response);
+            }
             return {
                 res: false,
                 message: e.message,
